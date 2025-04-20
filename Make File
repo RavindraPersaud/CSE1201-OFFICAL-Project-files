@@ -1,0 +1,20 @@
+CC = gcc
+CFLAGS = -Wall -Wextra -g
+LDFLAGS = 
+
+SRCS = main.c file_manager.c redaction_expert.c cipher_coder.c message_operations.c bonus_features.c ui_developer.c
+OBJS = $(SRCS:.c=.o)
+TARGET = message_system
+
+.PHONY: all clean
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(OBJS) -o $(TARGET) $(LDFLAGS)
+
+%.o: %.c message_system.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -f $(OBJS) $(TARGET) messages.dat 
