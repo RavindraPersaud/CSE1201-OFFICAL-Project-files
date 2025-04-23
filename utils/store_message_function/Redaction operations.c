@@ -1,4 +1,11 @@
-#include "message_system.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+#define MAX_WORD_LENGTH 50
+#define MAX_BANNED_WORDS 100
+#define MAX_MESSAGE_LENGTH 1000
 
 // Global array to store banned words
 char banned_words[MAX_BANNED_WORDS][MAX_WORD_LENGTH];
@@ -16,7 +23,7 @@ void initialize_banned_words() {
     strcpy(banned_words[banned_word_count++], "terrible");
     strcpy(banned_words[banned_word_count++], "awful");
     strcpy(banned_words[banned_word_count++], "horrible");
-    strcpy(banned_words[banned_word_count++], "worst");
+    strcpy(banned_words[banned_word_count++], "worst");       
 }
 
 // Function to add a new banned word
@@ -41,44 +48,74 @@ int is_banned_word(const char* word) {
     return 0;
 }
 
-// Simplified function to redact a message
+// Function to redact a message by replacing banned words with asterisks
 char* redact_message(char* message, const char* list) {
     if (message == NULL) {
         return NULL;
     }
     
-    // Create a copy of the message
-    char* redacted = (char*)malloc(MAX_MESSAGE_LENGTH * sizeof(char));
-    if (redacted == NULL) {
+    // Create a copy of the message to avoid modifying the original
+    char* redacted_message = (char*)malloc(MAX_MESSAGE_LENGTH * sizeof(char));
+    if (redacted_message == NULL) {
         return NULL;
     }
     
-    strcpy(redacted, message);
+    strcpy(redacted_message, message);
     
-    // Use custom list if provided
+    // If a custom list is provided, use it instead of the global banned words
     if (list != NULL && strlen(list) > 0) {
+        // Clear the current banned words list
         banned_word_count = 0;
+        
+        // Parse the list and add words
         char* word = strtok((char*)list, " ,;");
         while (word != NULL && banned_word_count < MAX_BANNED_WORDS) {
             add_banned_word(word);
             word = strtok(NULL, " ,;");
         }
     }
+
+    // Process each word in the message
+    char* word_start = redacted_message;
+    char* word_end;
+    char* current_pos = redacted_message;
     
-    // Simple word-by-word redaction
-    char* word = strtok(redacted, " \n\t.,;:!?()[]{}\"\'");
-    while (word != NULL) {
-        if (is_banned_word(word)) {
-            // Replace with asterisks
-            int len = strlen(word);
-            for (int i = 0; i < len; i++) {
-                word[i] = '*';
+    while (*current_pos != '\0') {
+        // Skip non-alphabetic characters
+        while (*current_pos != '\0' && !isalpha(*current_pos)) {
+            current_pos++;
+        }
+        
+        if (*current_pos == '\0') {
+            break;
+        }
+        
+        // Mark the start of a word
+        word_start = current_pos;
+        
+        // Find the end of the word
+        while (*current_pos != '\0' && isalpha(*current_pos)) {
+            current_pos++;
+        }
+        
+        // Temporarily terminate the word for comparison
+        char temp = *current_pos;
+        *current_pos = '\0';
+        
+        // Check if the word is banned
+        if (is_banned_word(word_start)) {
+            // Replace the word with asterisks
+            int word_length = strlen(word_start);
+            for (int i = 0; i < word_length; i++) {
+                word_start[i] = '*';
             }
         }
-        word = strtok(NULL, " \n\t.,;:!?()[]{}\"\'");
+        
+        // Restore the original character
+        *current_pos = temp;
     }
     
-    return redacted;
+    return redacted_message;
 }
 
 // Function to display all banned words
@@ -87,4 +124,48 @@ void display_banned_words() {
     for (int i = 0; i < banned_word_count; i++) {
         printf("%d. %s\n", i + 1, banned_words[i]);
     }
-} 
+}
+
+// Test function for redaction
+void test_redaction() {
+    // Initialize banned words
+    initialize_banned_words();
+    
+    // Test messages
+    const char* test_messages[] = {
+        "This is a bad message with some ugly words.",
+        "I hate this stupid program, it's the worst thing ever!",
+        "This message has no banned words.",
+        "The weather is terrible and awful today."
+    };
+    
+    printf("Testing redaction with default banned words list:\n\n");
+    
+    for (int i = 0; i < 4; i++) {
+        printf("Original: %s\n", test_messages[i]);
+        char* redacted = redact_message((char*)test_messages[i], NULL);
+        printf("Redacted: %s\n\n", redacted);
+        free(redacted);
+    }
+    
+    // Test with custom banned words list
+    const char* custom_list = "weather,program,message";
+    printf("Testing redaction with custom banned words list: %s\n\n", custom_list);
+    
+    for (int i = 0; i < 4; i++) {
+        printf("Original: %s\n", test_messages[i]);
+        char* redacted = redact_message((char*)test_messages[i], custom_list);
+        printf("Redacted: %s\n\n", redacted);
+        free(redacted);
+    }
+}
+
+// Main function for testing
+/*
+int main() {
+    printf("Testing redaction functionality...\n\n");
+    test_redaction();
+    printf("Redaction test complete.\n");
+    return 0;
+}
+*/ 
