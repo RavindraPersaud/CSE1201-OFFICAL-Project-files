@@ -1,5 +1,7 @@
 #include "message_system.h"
 
+
+red
 // Global array to store banned words
 // Each word is a string of MAX_WORD_LENGTH characters
 char banned_words[MAX_BANNED_WORDS][MAX_WORD_LENGTH];
