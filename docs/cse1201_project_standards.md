@@ -1,200 +1,200 @@
-CSE1201 Project Standards
+# CSE1201 Project Standards
 
-##Table of Contents
-- [Purpose](#purpose)
-- [Coding Style](#coding_style)
-  - [Naming Conventions](#coding_style)
-  - [Curly Braces and Formatting](#coding_style)
-  - [Whitespace Rules](#coding_style)
-  - [Header File Organization](#coding_style)
-  - [Commenting Practices](#coding_style)
-- [Documentation Rules](#docs)
-  - [File Descriptions](#docs)
-  - [Concise Documentation](#docs)
-  - [Unnecessary Documentation](#docs)
-- [Project File Structure](#file_struct)
-- [How to Organise Code](#organise)
+## Table of Contents
+- [Purpose of File](#purpose-of-file)
+- [Coding Style](#coding-style)
+  - [Naming Conventions](#naming-conventions)
+  - [Curly Braces and Formatting](#curly-braces-and-formatting)
+  - [Whitespace Rules](#whitespace-rules)
+  - [Header File Organization](#header-file-organization)
+  - [Commenting Practices](#commenting-practices)
+- [Documentation Rules](#documentation-rules)
+  - [File Description](#file-description)
+  - [Concise Documentation](#concise-documentation)
+  - [Unnecessary Documentation](#unnecessary-documentation)
+- [Project File Structure](#project-file-structure)
+- [How to Organise Code](#how-to-organise-code)
 
-##purpose
-Purpose of File:
-Provide the rules to maintain readability and consistency throughout the project and allow ease of maintenance. 
 
-NOTE: This file was written in Google docs then downloaded as .md. As a result the formatting looks a bit strange when opening just the .md file. Use link to see original formatting.
-https://docs.google.com/document/d/1Qy4Uuc--ueJHGzOF7M2OKbOd8G5pCz84Q-lMbqmHm2Y/edit?usp=sharing 
+## Purpose of File
+Provide the rules to maintain readability and consistency throughout the project and allow ease of maintenance.
 
-##coding_style
-Coding Style
-Naming conventions
-Use snake_case
-example:
-my_file,
-my_function()
-	
-Exception: Structures.
-Structures must use PascalCase:
-Eg
-MyStruct(){
-	//code
+## Coding Style
+
+### Naming Conventions
+- Use snake_case:
+  
+  my_file,
+  my_function()
+  
+- Exception: Structures must use PascalCase:
+  
+  MyStruct(){
+      // code
+  }
+  
+
+### Curly Braces and Formatting
+
+int main() {
+    // code
 }
 
 
-How curly braces are placed
-Int main(){
-	//code
-}
+### Whitespace Rules
+- Use whitespace to separate out symbols:
+  
+  int x = 123; // [yes]
+  Mylist = (1, 2, 3, 4); // [yes]
+  
+  
+  int x=123; // [no]
+  Mylist = (1,2,3,4); // [no]
+  
 
+### Header File Organization
+Organize header files alphabetically when importing:
+#include <art.h>
+#include <stdio.h>
+...
 
-Use whitespace to separate out symbols when you can.
-	Int x=123; [no]
-Mylist = (1,2,3,4); [no]
+### Commenting Practices
+- Place comments above the code they refer to:
+  
+  // comment
+  int x = do_this();
+  
 
-	Int x = 123; [yes]
-Mylist = (1, 2, 3, 4); [yes]
+- For multiline explanations:
+  
+  /*
+  Multiple line
+  explanation
+  comment
+  */
+  myFunc();
+  
 
+---
 
-Organise header files in alphabetical order.
-	#include <art>
-	#include <stdio.h>
+## Documentation Rules
 
-	Followed by file/function imports.
-	Import s“..balaldja/dalfjak/hello.txt:”
-
-Comments  are always placed above the code you are referring to. 
-short comments:
-//comment
-int x do_this(){}
-
-/*
-Multiple
-line
-Explanation
-comment
-*/
-	myFunc(){}
-
-##docs
-Documentation Rules
-File description(.h, .c, .md etc )
-Include brief description of the file’s purpose at the top of any file you create
-
-Opening my_file.c would read:
+### File Description
+Include a brief description of the file’s purpose at the top of any file you create:
 
 /*
 my_file.c:
-calculates the sum of two numbers for the main.c file to print.
-It also handles blah blah blah…
+Calculates the sum of two numbers for the main.c file to print.
+It also handles blah blah blah...
 */
 
 
-Concise documentation
-Do not add too many comments that will clutter the code. Say what the function/code block does and why it's there.
+### Concise Documentation
+- Summarize what the function/block does and why:
+  
+  /*
+  Calculates the addition of the same number with two different exponents.
+  Example: 3^2 + 3^5.
+  The result is used in important_function() as a value it needs before it can work.
+  */
+  int calculate_exponent_sums(int number, int exponent1, int exponent2) {
+      int sum = exponent1 + exponent2;
+      int product = pow(number, sum);
+      return product;
+  }
+  
 
-Example:
-\*
-Finds the calculates the addition of the same number with two different exponents.  Example: 3^2+ 3^5.
-The result is used in important_function() as a value it needs before it can work.
+### Unnecessary Documentation
+Avoid adding comments inside simple code blocks:
+- **Do:**
+  
+  // Used as an example of a small function to give readers a general idea.
+  int small_function() {
+      printf("This is a small function.");
+      printf("Does like 1 or 2 things.");
+      return 0;
+  }
+  
+- **Don’t Do:**
+  
+  int small_function() {
+      // Prints to the terminal that this is a small function
+      printf("This is a small function.");
+      
+      // Prints to the terminal how many things it does
+      printf("Does like 1 or 2 things.");
+      
+      // Prints to the... you get the point
+      printf("Easy to keep track of and understand while reading the above comment.");
+      return 0;
+  }
+  
 
-*/
-int calculate_exponent_sums( number, exponent1, exponent2);{
-	int sum =  exponent1 + exponent2;
-	int product = number ** sum;
-	return product;
-}
+---
 
-
-Unnecessary documentation
-Dont comment inside the code block/ function unless it’s too complex for simple documentation. 
-Example:
-Do:
-//used as example of small function to give reader general idea them
-int small_function(){
-	printf(“this is a small function.”);
-	printf(“does like 1 or 2 things”);
-	printf(“easy to keep track of and understand while reading the
-above comment”);
-
-return 0;
-}
-
-		Don’ Do:
-		int small_function(){
-			#prints to the terminal that this is a small function
-	printf(“this is a small function.”);
-
-	#prints to the terminal how many things is done
-	printf(“does like 1 or 2 things”);
-
-	#prints to the … you get the point
-	printf(“easy to keep track of and understand while reading the
-above comment”);
-return 0;
-}
+## Project File Structure
 
 
-##file_struct
-Project File Structure
-	/cse1201_official_project
-	|--/src
-	|	|--main.c
-	|	|--/task_1
-	|	|	|--function_name_1.c
-	|	|
-|	|--/task_2
-	|	|	|--function_name_2.c
-	|	|	|--function_name_3.c
-	|	|
-	|	|--/task…
+/cse1201_official_project
+|-- /src
+|   |-- main.c
+|   |-- /task_1
+|   |   |-- function_name_1.c
+|   |
+|   |-- /task_2
+|   |   |-- function_name_2.c
+|   |   |-- function_name_3.c
+|   |
+|   |-- /task...
 |
-|--/helper_functions
-	|	|-- helper_function_name.c
-	|	|--...
+|-- /helper_functions
+|   |-- helper_function_name.c
+|   |-- ...
 |
-|--/include
-	|	|-- function_name_1.h
-	|	|-- …
-|	
-|--/storage
-	|	|--storage_file.dat
-	|
-|--/docs
-	|	|--document_1.md
-	|	|--document_2.pdf
-	|
-	|--make_file
-	|--README.md
+|-- /include
+|   |-- function_name_1.h
+|   |-- ...
+|   
+|-- /storage
+|   |-- storage_file.dat
+|
+|-- /docs
+|   |-- document_1.md
+|   |-- document_2.pdf
+|
+|-- make_file
+|-- README.md
 
 
+---
 
+## How to Organise Code
 
-
-##organise
-How to Organise Code
-/src 
+### /src
 Abbreviation for source files. Contains main.c and all the functions main.c calls directly.
 
-/task
-Represents a folder that is named according to the task the person assigned had to make
-	Example: |--/message_handling
-			|--message_reciever.c
-			|--message_sender.c
+### /task
+Represents a folder named according to the task assigned:
+- Example:
+  
+  /message_handling
+    |-- message_receiver.c
+    |-- message_sender.c
+  
 
-.c files in /src
-Main.c relies on these functions to work and are organised into folders based on the task those functions were coded to accomplish
+### .c Files in /src
+main.c relies on these functions to work. They are organized into folders based on the task those functions were coded to accomplish.
 
+### /helper_functions
+Contains functions not called in main.c but reused throughout multiple source files.
 
-/helper_functions
-Contains functions that not called in main.c but reused throughout multiple source files
+### /include
+Stores the .h files created to port functions from file to file.
 
+### /storage
+Contains text files used to store messages for later access.
 
-/include
-Stores the .h folders created to port functions from file to file.
+### /docs
+Stores the documentation.
 
-
-/storage
-Contains the text file that is used to store messages for later access
-
-
-/docs
-Stores the documentation
-
-NOTE: Files/folders that cannot be categorised into the above just go straight to the root folder with the README.md and the cmake file.
+Note: Files or folders that cannot be categorized into the above should go directly into the root folder with the README.md and make_file.
