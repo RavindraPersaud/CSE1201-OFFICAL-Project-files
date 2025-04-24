@@ -1,15 +1,14 @@
-//a C header file that provides functions for input and output operations, such as reading from and writing to files and the console.
+/*
+decryption.c:
+Decrypts messages encrypted by encryption.c
+*/
 #include <stdio.h>
-//a C header file that provides functions for manipulating C-style strings and memory blocks.
-#include <string.h>
-//a C header file that provides functions for memory allocation, process control, conversions, and other utility operations.
 #include <stdlib.h>
+#include <string.h>
 
 /*
-*Columnar Decryption function
-*-----------------------------
-*Decrypts messages ecnrypted by the 
-*columnar transposition cipher
+Columnar Decryption function
+Decrypts messages ecnrypted by the columnar transposition cipher
 */
 char* decrypt(char message[], char key[]){
     //Reuses most variables from encrpyt function
@@ -29,7 +28,7 @@ char* decrypt(char message[], char key[]){
     char* full_sentence = malloc((msg_len + key_len + 1) * sizeof(char));
     full_sentence[0] = '\0'; 
     
-    //getting back matrix from encrypted text
+    //Getting back matrix from encrypted text
     for (int i = 0; i < key_len; i++){
         matrix[i][cols] = '\0';
         for(int j = 0 ; j < cols; j++){
@@ -50,8 +49,9 @@ char* decrypt(char message[], char key[]){
         }
     }
 
-    /*Iterated through the ASCII values of original key then finds its position in the sorted key 
-      then uses the indexes of those values to get the matrix of the original key before sorting.
+    /*
+    Iterated through the ASCII values of original key, finds its position in the sorted key 
+    then uses the indexes of those values to get the matrix of the original key before sorting.
     */
     for(int p = 0; p < key_len; p++){
         int num = (int)key[p];
@@ -62,7 +62,7 @@ char* decrypt(char message[], char key[]){
         }
     }
 
-    //iterates column by column and appends chars to full sentence replacing '-' with ' '
+    //Iterates column by column and appends chars to full sentence replacing '-' with ' '
     printf("Decrypted Message:");
     for (int i = 0; i < cols; i++) {
         for (int j = 0; j < key_len; j++) {
