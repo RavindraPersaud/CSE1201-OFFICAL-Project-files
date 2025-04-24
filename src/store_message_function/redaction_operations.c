@@ -1,7 +1,16 @@
+/*
+redactor.c
+-----------------------------------------
+The messaging system's redaction features are managed by this file.
+It offers features to show the list of prohibited terms, create custom restricted words,
+redact input messages, and initialize blacklisted words.
+The main objective is to make sure that any offensive or 
+reported terms are removed before a message is shown or saved.
+ */
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 #define MAX_WORD_LENGTH 50
 #define MAX_BANNED_WORDS 100
@@ -11,9 +20,14 @@
 char banned_words[MAX_BANNED_WORDS][MAX_WORD_LENGTH];
 int banned_word_count = 0;
 
-// Function to initialize the banned words list
+/*
+ * initialize_banned_words()
+ * -----------------------------------------
+ * Adds a default list of banned words to the global array.
+ */
+
+Function to initialize the banned words list*/
 void initialize_banned_words() {
-    // Add some default banned words
     strcpy(banned_words[banned_word_count++], "bad");
     strcpy(banned_words[banned_word_count++], "ugly");
     strcpy(banned_words[banned_word_count++], "stupid");
@@ -26,10 +40,15 @@ void initialize_banned_words() {
     strcpy(banned_words[banned_word_count++], "worst");
 }
 
-// Function to add a new banned word
+/* 
+add_banned_word()
+-----------------------------
+Function to add a new banned word
+Returns 1 on success, 0 if the list is full.
+*/
 int add_banned_word(const char* word) {
     if (banned_word_count >= MAX_BANNED_WORDS) {
-        return 0; // List is full
+        return 0;
     }
     
     strncpy(banned_words[banned_word_count], word, MAX_WORD_LENGTH - 1);
@@ -38,7 +57,12 @@ int add_banned_word(const char* word) {
     return 1;
 }
 
-// Function to check if a word is in the banned list
+/*
+is_banned_word()
+-----------------------------------------
+Function to check if a word is in the banned list
+Returns 1 if it is, 0 otherwise.
+*/
 int is_banned_word(const char* word) {
     for (int i = 0; i < banned_word_count; i++) {
         if (strcmp(word, banned_words[i]) == 0) {
@@ -48,7 +72,14 @@ int is_banned_word(const char* word) {
     return 0;
 }
 
-// Function to redact a message by replacing banned words with asterisks
+/*
+redact_message()
+-----------------------------------------
+Function to redact a message by replacing banned words with asterisks
+Accepts an optional list of banned words (comma/space/semicolon separated).
+If a custom list is provided, use it instead of the global banned words
+Returns a pointer to the redacted message.
+*/
 char* redact_message(char* message, const char* list) {
     if (message == NULL) {
         return NULL;
@@ -62,12 +93,11 @@ char* redact_message(char* message, const char* list) {
     
     strcpy(redacted_message, message);
     
-    // If a custom list is provided, use it instead of the global banned words
     if (list != NULL && strlen(list) > 0) {
-        // Clear the current banned words list
+       
         banned_word_count = 0;
         
-        // Parse the list and add words
+        
         char* word = strtok((char*)list, " ,;");
         while (word != NULL && banned_word_count < MAX_BANNED_WORDS) {
             add_banned_word(word);
