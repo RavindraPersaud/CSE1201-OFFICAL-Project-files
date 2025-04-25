@@ -7,7 +7,6 @@
 
 /*
 *Columnar Transpositon Cipher
-*---------------------------------
 *method of encryption where the message is written out in rows under a keyword, 
 *then the columns are rearranged in the order of the letters in the keyword (usually alphabetically). 
 *The ciphertext is then read column by column.
