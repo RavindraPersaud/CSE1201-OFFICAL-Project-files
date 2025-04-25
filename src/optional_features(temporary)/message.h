@@ -19,6 +19,5 @@ extern int totalMessages;
 extern int messageCapacity;
 
 void editMessage();
-void addMessage(message newMsg);
 
 #endif
