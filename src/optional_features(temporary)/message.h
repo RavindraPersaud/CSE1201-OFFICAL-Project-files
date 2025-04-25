@@ -14,9 +14,11 @@ typedef struct {
     char decryptedMessage[MAX_LEN];
 } Message;
 
-extern Message messages[10];
+extern Message *messages;
 extern int totalMessages;
+extern int messageCapacity;
 
 void editMessage();
+void addMessage(message newMsg);
 
 #endif
