@@ -26,7 +26,7 @@ int banned_word_count = 0;
  * Adds a default list of banned words to the global array.
  */
 
-Function to initialize the banned words list*/
+//Function to initialize the banned words list
 void initialize_banned_words() {
     strcpy(banned_words[banned_word_count++], "bad");
     strcpy(banned_words[banned_word_count++], "ugly");
@@ -148,7 +148,12 @@ char* redact_message(char* message, const char* list) {
     return redacted_message;
 }
 
-// Function to display all banned words
+/*
+display_banned_words()
+-----------------------------------------
+Function to display all banned words
+Prints the current list of banned words to the screen.
+ */
 void display_banned_words() {
     printf("Banned words list:\n");
     for (int i = 0; i < banned_word_count; i++) {
@@ -156,9 +161,14 @@ void display_banned_words() {
     }
 }
 
-// Test function for redaction
+/*
+test_redaction()
+-----------------------------------------
+Test function for redaction
+Initialize banned words and test the message
+ */
 void test_redaction() {
-    // Initialize banned words
+   
     initialize_banned_words();
     
     // Test messages
