@@ -13,7 +13,8 @@ typedef struct {
 } Record;
 
 /*
-*Store Message Function
+Store_Message Function
+-------------------------
 Creates structs containing ID,Title and message then
 stores them in a .dat file
 */
