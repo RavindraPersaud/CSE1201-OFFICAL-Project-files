@@ -1,2 +1,0 @@
-github doesn't add blank folders to the repository meaning the folder will not show on github.
-When something gets added to this folder, then delete this file.

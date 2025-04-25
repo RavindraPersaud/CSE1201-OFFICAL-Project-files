@@ -72,6 +72,7 @@ int is_banned_word(const char* word) {
     return 0;
 }
 
+
 /*
 redact_message()
 -----------------------------------------
