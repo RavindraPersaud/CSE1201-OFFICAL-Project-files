@@ -1,7 +1,3 @@
-#ifndef MESSAGE_H
-#define MESSAGE_H
-
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -76,4 +72,3 @@ void edit_message() {
 
 }
 
-#endif
