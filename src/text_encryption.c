@@ -1,5 +1,6 @@
 /*
-text_encryption_function.c:
+text_encryption.c
+-------------------------------------
 Handles the encryption and decryption of messages
 */
 #include <stdio.h>
@@ -8,11 +9,13 @@ Handles the encryption and decryption of messages
 
 
 /*
-Columnar Decryption function
-Decrypts messages ecnrypted by the columnar transposition cipher
+Columnar Decryption function - decrypt
+--------------------------------------------
+Decrypts messages ecnrypted by the columnar transposition cipher.
+Reuses most variables from encrpyt function.
+Gets's back matrix from encrypted text.
 */
 char* decrypt(char message[], char key[]){
-    //Reuses most variables from encrpyt function
     int msg_len = strlen(message);
     int key_len = strlen(key);
     int counter = 0;
@@ -29,7 +32,6 @@ char* decrypt(char message[], char key[]){
     char* full_sentence = malloc((msg_len + key_len + 1) * sizeof(char));
     full_sentence[0] = '\0'; 
     
-    //Getting back matrix from encrypted text
     for (int i = 0; i < key_len; i++){
         matrix[i][cols] = '\0';
         for(int j = 0 ; j < cols; j++){
@@ -38,7 +40,6 @@ char* decrypt(char message[], char key[]){
         }
     }
 
-    //sorting key into alphabetical order
     for(int k = 0; k < key_len ; k++){
         for (int l = k+1; l < key_len ; l++){
             if((int)mod_key[l] < (int)mod_key[k]){
@@ -80,19 +81,22 @@ char* decrypt(char message[], char key[]){
 
 
 /*
-Columnar Transpositon Cipher
-method of encryption where the message is written out in rows under a keyword, 
+Columnar Transpositon Cipher - encrypt
+---------------------------------------
+Method of encryption where the message is written out in rows under a keyword, 
 then the columns are rearranged in the order of the letters in the keyword (usually alphabetically). 
 The ciphertext is then read column by column.
-*/
 
-// Encrytps the message given by the user.
+Encrytps the message given by the user.
+Keeps track of place in plaintext(message).
+
+*/
 char* encrypt(char message[], char key[]){
     //Getting message and key length for array iteration.
     int msg_len = strlen(message);
     int key_len = strlen(key);
 
-    //Counter to keep track of place in plaintext(message).
+    
     int counter = 0;
 
     //variable for return value (uses malloc because local arrays get detsroyed after function execution).
