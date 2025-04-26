@@ -7,6 +7,9 @@ redact input messages, and initialize blacklisted words.
 The main objective is to make sure that any offensive or 
 reported terms are removed before a message is shown or saved.
  */
+#ifndef STORE_H
+#define STORE_H
+
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -201,6 +204,7 @@ void test_redaction() {
     }
 }
 
+#endif
 // Main function for testing
 /*
 int main() {
