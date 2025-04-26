@@ -1,3 +1,6 @@
+#ifndef SEARCH_H
+#define SEARCH_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -40,3 +43,5 @@ int search_by_phrase(char phrase[]){
     
     return 0;
 }
+
+#endif
