@@ -1,3 +1,5 @@
+#ifndef DELETE_H
+#define DELETE_H
 //a C header file that provides functions for input and output operations, such as reading from and writing to files and the console.
 #include <stdio.h>
 //a C header file that provides functions for memory allocation, process control, conversions, and other utility operations.
@@ -91,3 +93,5 @@ int delete_rec_by_title(char title[]){
     printf("Record with Title %s removed.\n", title);
     return 0;
 }
+
+#endif
