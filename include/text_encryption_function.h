@@ -2,6 +2,9 @@
 text_encryption_function.c:
 Handles the encryption and decryption of messages
 */
+#ifndef ENCRYPT_H
+#define ENCRYPT_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -164,3 +167,4 @@ char* encrypt(char message[], char key[]){
     return full_sentence;
 }
 
+#endif
