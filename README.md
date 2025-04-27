@@ -25,7 +25,7 @@
 ---
 
 ## Introduction
-This C application which allows users to manage notes or messages. It includes features for storing, viewing, searching, modify, deleting, redacting, and encrypting/decrypting messages. The program utilizes file handling, dynamic memory, and string manipulation.
+This C application which allows users to manage notes or messages. It includes features for storing, viewing, searching, modify, deleting, redacting, and encrypting/decrypting messages.
 
 ---
 
@@ -91,8 +91,8 @@ Results found are printed to the screen.
 ---
 
 ###  Modifying Messages
-- Enter the index of the message to edit.
-- Encrypted messages require password access.
+- Enter the id of the message to edit.
+- Encrypted messages needs password to access.
 - Once decrypted, the user may input new content which overwrites the previous data.
 
 ---
@@ -107,7 +107,7 @@ Deletion involves copying all other records to a temp file, then replacing the o
 ---
 
 ### Redacting Words
-Replaces all instances of a target word in a message with asterisks (e.g., `stupid` → `******`).
+Replaces all instances of a particular word in a message with asterisks (e.g., `stupid` → `******`).
 
 ---
 
