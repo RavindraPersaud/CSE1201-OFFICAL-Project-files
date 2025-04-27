@@ -32,7 +32,10 @@ Steps:
 5.confirmation message
 Returns 0 on successful deletion, 1 on failure.
 */
-int delete_rec_by_id(int id){
+int delete_rec_by_id(){
+
+    int id;
+    scanf("%d", &id);
 
     FILE *fptr = fopen("records.dat", "rb");
    
@@ -77,7 +80,12 @@ Steps:
 Iterates through all Record.title in the .dat file and deletes them.
 Returns 0 on successful deletion, 1 on failure.
 */
-int delete_rec_by_title(char title[]){
+int delete_rec_by_title(){
+
+    char title[50];
+    printf("Enter Message Title:");
+    scanf("%[^\n]", title);
+
     FILE *fptr = fopen("records.dat", "rb");
 
     FILE *temp = fopen("temp.dat", "wb");
@@ -104,4 +112,5 @@ int delete_rec_by_title(char title[]){
     printf("Record with Title %s removed.\n", title);
     return 0;
 }
+
 
