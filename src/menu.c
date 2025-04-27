@@ -9,9 +9,15 @@ void end_of_menu();
 
 /*
 Retrieve the user's choice.
-Checks the value scanf returns. Since we use %d, scanf should return a value of 1 if the user entered an integer.
-If the user did not enter an iteger, meaning choice !=1, it will convert the user's choice into a number.
-Then it would clear the input buffer and discard any invalid input.
+Checks the value scanf() returns. Since we use %d, scanf should return a value of 1 if the user entered an integer.
+
+If the user did not enter an iteger, meaning choice !=1, it will convert the user's choice into a number 
+The chosen number must be larger than any number int choice; could possibley equal, throughout the whole system. For 
+now, 30 is larger than any choice value needed by the program.
+
+That chosen number is then returned and the respective menu user_choice() is in handles the giving error message.
+
+Then clear the input buffer to discard any invalid input.
 */
 int user_choice(){ 
     int choice;
