@@ -1,86 +1,126 @@
 /*
-menu_functions.h:
-blah blah blah blah purpose
+menu_functions.c:
+Handles menu information and directing the user's actions to the requested functions across program
 */
 #include <stdio.h>
 
-
-// Main Menu Function
-// Function declarations
-void main_menu();
-int main_menu_choice();
-int get_search_type();
-void delete_message();
-
-// Main menu loop function
+void end_of_menu();
 
 
-// Function to display the main menu
-void main_menu() {
-    printf("\nWelcome, what would you like to do today?:\n");
-    printf("0. Open Help Document\n");
-    printf("1. View all notes/messages\n");
-    printf("2. Search for and view a note/message\n");
-    printf("3. Delete a note/message\n");
-    printf("4. Store a new note/message\n");
-    printf("5. Search notes/messages by word\n");
-    printf("6. Modify a previously stored note\n");
-    printf("7. Exit program\n");
-    printf("---------------------------\n");
-}
-
-// Function to get the user's main menu choice
-int main_menu_choice() {
+/*
+Retrieve the user's choice.
+Checks the value scanf returns. Since we use %d, scanf should return a value of 1 if the user entered an integer.
+If the user did not enter an iteger, meaning choice !=1, it will convert the user's choice into a number.
+Then it would clear the input buffer and discard any invalid input.
+*/
+int user_choice(){ 
     int choice;
     printf("Enter your choice: ");
-    scanf("%d", &choice);
-    return choice;
+
+    if (scanf("%d", &choice) != 1) {
+        choice = 7;
+        while (getchar() != '\n'); 
+    }
+    
+    else {
+        return choice;
+    }
+
 }
 
-// Function to get the search type
-int get_search_type() {
-    int type;
+
+//Display the main menu and prompt the user for thier choice
+
+int main_menu() {
+    printf("0. Store a new note/message\n");
+    printf("1. View all notes and messages.\n");
+    printf("2. Search for note/message.\n");
+    printf("3. Modify a previously stored note\n");
+    printf("4. Delete a note/message\n");
+    printf("5. Exit program\n\n");
+}
+
+//Return what method the user wants to search by
+void search_menu() {
     printf("Do you want to search by:\n");
     printf("1. Title\n");
     printf("2. ID\n");
-    printf("Enter your choice: ");
-    scanf("%d", &type);
-    return type;
+    printf("3. Phrase\n\n");
+    printf("4. Exit to Main Menu\n");
+
 }
 
-// Function to handle deleting a message
+
+// Menu operations for deleting a message
 void delete_message() {
-    int show_ids, delete_choice;
+    int view_messages_choice, delete_choice;
+    int display_delete_message_menu = 1;
+    
+    while (display_delete_message_menu == 1){
+        // Ask if the user wants to view all IDs before deleting a message and get their response.
+        printf("Show all messages before choosing what to delete?\n\n");
+        printf("1. Yes\n");
+        printf("2. No\n");
+        printf("Enter your choice: ");
+        view_messages_choice = user_choice();
 
-    // Ask if the user wants to view all IDs
-    printf("Do you want to see all message IDs required to delete?\n");
-    printf("1. Yes\n");
-    printf("2. No\n");
-    printf("Enter your choice: ");
-    scanf("%d", &show_ids);
+        if (view_messages_choice == 1) {
+            // Placeholder for displaying all message IDs
+            printf("Displaying all message IDs...\n");
+            end_of_menu();
+            break;
+        }
+        else if (view_messages_choice == 2 ){
+            end_of_menu();
+            break;
 
-    if (show_ids == 1) {
-        // Placeholder for displaying all message IDs
-        printf("Displaying all message IDs...\n");
+        }
+
+        else{
+            printf("Invalid input! Enter 1 or 2.\n");
+            end_of_menu();
+        }
     }
 
-    // Ask if the user wants to delete a message or exit
-    printf("What would you like to do?\n");
-    printf("1. Delete message (requires ID)\n");
-    printf("2. Exit to menu\n");
-    printf("Enter your choice: ");
-    scanf("%d", &delete_choice);
+    //Ask user if they want to delete message/go back to main menu
+    while(display_delete_message_menu == 1){
+        printf("What would you like to do?\n\n");
+        printf("1. Delete message (requires ID)\n");
+        printf("2. Exit to menu\n");
+        printf("Enter your choice: ");
+        delete_choice = user_choice();
 
-    if (delete_choice == 1) {
-        // Placeholder for deleting a message
-        int message_id;
-        printf("Enter the ID of the message to delete: ");
-        scanf("%d", &message_id);
-        printf("Message with ID %d deleted.\n", message_id);
-    } else if (delete_choice == 2) {
-        printf("Returning to main menu.\n");
-    } else {
-        printf("Invalid choice! Returning to main menu.\n");
+        //Activate delete message function. Doesn't  break from loop to allow multiple deletions.
+        if (delete_choice == 1) {
+            // Placeholder for deleting a message
+            int message_id;
+            printf("Enter the ID of the message to delete: ");
+            scanf("%d", &message_id);
+            printf("Message with ID %d deleted.\n", message_id);
+            end_of_menu();
+        }
+
+        //Go back to main menu.
+        else if (delete_choice == 2) {
+            printf("Returning to main menu.\n");
+            end_of_menu();
+            break;
+
+        } 
+
+        //Invalid input
+        else {
+            printf("Invalid input. Choose number 1 or 2.\n");
+            end_of_menu();
+        }
     }
+    return;
 }
+
+
+//Function that prints at the end of menus to let you know the previous menu has been closed
+void end_of_menu(){
+    printf("--------------------------------------------------------------------------------\n\n");
+}
+
 

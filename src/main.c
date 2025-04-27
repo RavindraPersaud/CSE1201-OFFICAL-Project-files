@@ -1,64 +1,108 @@
 #include <stdio.h>
-void main_menu();
 
 //menu.c
-int main_menu_choice();
-int get_search_type();
+
+int main_menu();
+void search_menu();
 void delete_message();
-void run_main_menu();
+void end_of_menu();
+int user_choice();
 
 int main(){
-    run_main_menu();
-}
-
-// Main menu loop function
-void run_main_menu() {
-    int choice;
-
+    printf("WELCOME TO OUR NOTES PROGRAM!\nSee README.md for help.\n\n");
+    int main_menu_choice;
     do {
-        // Display the menu
-        main_menu();
+        //Get the user's choice for which function they want to use. 
         
-        // Get the user's choice
-        choice = main_menu_choice();
+        main_menu();
+        main_menu_choice = user_choice();
+        end_of_menu(); 
+
 
         // Process the choice
-        switch (choice) {
+        switch (main_menu_choice) {
+            //Take user to store message menu
             case 0:
-                printf("See README.md in root file.\n\n");
-                break;
-            case 1:
                 printf("Storing a new note/message.\n\n");
+                end_of_menu();
                 break;
+
+            //Print all messages to the screen
+            case 1:
+                printf("Viewing all notes/messages\n\n");
+                end_of_menu();
+                break;
+
+            //Bring up the menu to choose search options and direct user to requested method
             case 2: {
-                int search_type = get_search_type();
-                if (search_type == 1) {
-                    printf("Searching by Title.\n");
-                } else if (search_type == 2) {
-                    printf("Searching by ID.\n");
-                } else {
-                    printf("Invalid search type.\n");
+                int show_search_menu = 1;
+
+                int search_type; 
+                while (show_search_menu == 1){
+                    search_menu();
+                    search_type = user_choice();
+
+
+                    if (search_type == 1) {
+                        printf("Searching by Title.\n");
+                        //search function by title 
+                        end_of_menu();
+
+                    }
+                    
+                    else if (search_type == 2) {
+                        printf("Searching by ID.\n");
+                        //search function by id
+                        end_of_menu();
+                    } 
+                    
+                    else if (search_type == 3) {
+                        printf("Search by phrase\n");
+                        //search function by phrase.
+                        end_of_menu();
+                    } 
+                    
+                    else if (search_type == 4){
+                        printf("Returning to main menu...\n");
+                        end_of_menu();
+                        break;          
+                    }
+
+                    else {
+                        printf("Invalid search type.\n");
+                        end_of_menu();
+                    }
+                   
                 }
+                //return to main menu
                 break;
-            }
+           }
+
+            //Display modify menu
             case 3:
-                delete_message();  // Call the delete message flow
-                break;
-            case 4:
-                printf("Storing a new note/message.\n");
-                break;
-            case 5:
-                printf("Searching notes/messages by word.\n");
-                break;
-            case 6:
                 printf("Modifying a previously stored note.\n");
+                end_of_menu();
                 break;
-            case 7:
-                printf("Exiting program. Goodbye!\n");
-                return;  // Exit the function (and the program)
+
+
+            //Display deletion menu 
+            case 4:
+                delete_message();  
+                end_of_menu();
+                break;
+
+            //exit program
+            case 5:
+                printf("Exiting program...\n");
+                end_of_menu();
+                return 0;
+
             default:
-                printf("Invalid choice! Try again.\n");
+                printf("Invalid input! Enter any number from 0 to 5.\n");
+                end_of_menu();
         }
 
-    } while (choice != 7);
+    }
+    while (main_menu_choice != 5);     
+    return 0;
 }
