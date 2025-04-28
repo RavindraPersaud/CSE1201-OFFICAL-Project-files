@@ -1,140 +1,174 @@
+
 # CSE1201 Project Standards
 
 ## Table of Contents
 - [Purpose of File](#purpose-of-file)
+
 - [Coding Style](#coding-style)
   - [Naming Conventions](#naming-conventions)
   - [Curly Braces and Formatting](#curly-braces-and-formatting)
   - [Whitespace Rules](#whitespace-rules)
   - [Header File Organization](#header-file-organization)
+
+ - [Documentation Rules](#documentation-rules)
   - [Commenting Practices](#commenting-practices)
-- [Documentation Rules](#documentation-rules)
   - [File Description](#file-description)
   - [Concise Documentation](#concise-documentation)
   - [Unnecessary Documentation](#unnecessary-documentation)
-- [Project File Structure](#project-file-structure)
-- [How to Organise Code](#how-to-organise-code)
 
+- [Project File Structure](#project-file-structure)
+
+- [Final Notes](#final-notes)
+
+******
 
 ## Purpose of File
-Provide the rules to maintain readability and consistency throughout the project and allow ease of maintenance.
+This document provides rules for maintaining **readability**, **consistency**, and **ease of maintenance** throughout the project.
+
+******
 
 ## Coding Style
 
 ### Naming Conventions
-- Use snake_case:
+- Use **snake_case** for variables, functions, and filenames:
+  my_file;
+  my_function();
+  ```
+
+- Use **PascalCase** for structure names:
+  ```c
+  typedef struct MyStruct {
+      // fields
+  } MyStruct;
   
-  my_file,
-  my_function()
-  
-- Exception: Structures must use PascalCase:
-  
-  MyStruct(){
-      // code
-  }
-  
+
+******
 
 ### Curly Braces and Formatting
+- Always place the opening curly brace `{` on the same line as the control statement.
+- Always use curly braces `{}` even for single-line blocks.
 
+Example:
 int main() {
     // code
 }
 
+if (condition) {
+    do_something();
+}
+
+******
 
 ### Whitespace Rules
-- Use whitespace to separate out symbols:
-  
-  int x = 123; // [yes]
-  Mylist = (1, 2, 3, 4); // [yes]
-  
-  
-  int x=123; // [no]
-  Mylist = (1,2,3,4); // [no]
-  
+- Use whitespace to clearly separate elements:
+
+Correct:
+int x = 123;
+Mylist = (1, 2, 3, 4);
+
+
+Incorrect:
+int x=123;
+Mylist = (1,2,3,4);
+
+******
 
 ### Header File Organization
-Organize header files alphabetically when importing:
+- Place **system headers** first, then **custom headers**.
+- Alphabetize headers within each group.
+
+Example:
 #include <art.h>
 #include <stdio.h>
-...
 
-### Commenting Practices
-- Place comments above the code they refer to:
-  
-  // comment
-  int x = do_this();
-  
+#include "file_handler.h"
+#include "message_handler.h"
 
-- For multiline explanations:
-  
-  /*
-  Multiple line
-  explanation
-  comment
-  */
-  myFunc();
-  
+******
 
----
+******
 
 ## Documentation Rules
 
-### File Description
-Include a brief description of the file’s purpose at the top of any file you create:
+### Commenting Practices
+- Place comments directly **above** the code they describe.
+- Use `/* */` for longer explanations.
 
+Example:
+// Initializes variables
+int x = initialize_variables();
+
+Multiline Example:
+/*
+Initializes variables and sets the system to default mode.
+Should be called at the start of the program.
+*/
+int initialize_system() {
+    // code
+}
+
+### File Description
+Include a description at the top of each file:
 /*
 my_file.c:
 Calculates the sum of two numbers for the main.c file to print.
-It also handles blah blah blah...
+It also handles error checking and formatting.
 */
 
+Skip two lines when conducting this and skip two more lines when writing actual code.
+Additionally skip two lines functions between functions 
+
+
+******
 
 ### Concise Documentation
-- Summarize what the function/block does and why:
-  
-  /*
-  Calculates the addition of the same number with two different exponents.
-  Example: 3^2 + 3^5.
-  The result is used in important_function() as a value it needs before it can work.
-  */
-  int calculate_exponent_sums(int number, int exponent1, int exponent2) {
-      int sum = exponent1 + exponent2;
-      int product = pow(number, sum);
-      return product;
-  }
-  
+- Summarize what the function/block does and why.
+
+Example:
+/*
+Calculates the addition of the same number with two different exponents.
+Example: 3^2 + 3^5.
+The result is used in important_function() for further processing.
+*/
+int calculate_exponent_sums(int number, int exponent1, int exponent2) {
+    int sum = pow(number, exponent1) + pow(number, exponent2);
+    return sum;
+}
+
+
+******
 
 ### Unnecessary Documentation
-Avoid adding comments inside simple code blocks:
-- **Do:**
-  
-  // Used as an example of a small function to give readers a general idea.
-  int small_function() {
-      printf("This is a small function.");
-      printf("Does like 1 or 2 things.");
-      return 0;
-  }
-  
-- **Don’t Do:**
-  
-  int small_function() {
-      // Prints to the terminal that this is a small function
-      printf("This is a small function.");
-      
-      // Prints to the terminal how many things it does
-      printf("Does like 1 or 2 things.");
-      
-      // Prints to the... you get the point
-      printf("Easy to keep track of and understand while reading the above comment.");
-      return 0;
-  }
-  
+Avoid obvious, repetitive comments inside simple functions.
 
----
+**Do:**
+// Example of a small function for demonstration
+int small_function() {
+    printf("This is a small function.");
+    printf("It does only 1 or 2 things.");
+    return 0;
+}
+
+
+**Don't:**
+int small_function() {
+    // Prints to the terminal that this is a small function
+    printf("This is a small function.");
+    
+    // Prints to the terminal how many things it does
+    printf("It does only 1 or 2 things.");
+    
+    // Prints again...
+    printf("Easy to understand.");
+    return 0;
+}
+
+
+******
 
 ## Project File Structure
 
-
+```
 /cse1201_official_project
 |-- /src
 |   |-- main.c
@@ -162,39 +196,32 @@ Avoid adding comments inside simple code blocks:
 |   |-- document_1.md
 |   |-- document_2.pdf
 |
-|-- make_file
+|-- Makefile
 |-- README.md
+```
 
+******
 
----
-
-## How to Organise Code
 
 ### /src
-Abbreviation for source files. Contains main.c and all the functions main.c calls directly.
-
-### /task
-Represents a folder named according to the task assigned:
-- Example:
-  
-  /message_handling
-    |-- message_receiver.c
-    |-- message_sender.c
-  
+Contains **main.c** and primary source files.
 
 ### .c Files in /src
-main.c relies on these functions to work. They are organized into folders based on the task those functions were coded to accomplish.
-
-### /helper_functions
-Contains functions not called in main.c but reused throughout multiple source files.
+Grouped based on the task they perform.
 
 ### /include
-Stores the .h files created to port functions from file to file.
+Stores header files (`.h`) for functions used across multiple `.c` files.
 
 ### /storage
-Contains text files used to store messages for later access.
+Contains text/data files needed by the program.
 
 ### /docs
-Stores the documentation.
+Holds all documentation files.
 
-Note: Files or folders that cannot be categorized into the above should go directly into the root folder with the README.md and make_file.
+
+***
+
+## Final Notes
+- Be **consistent** and **organized**.
+- Follow these standards strictly unless project supervisors specify otherwise.
+- Good coding standards make it easier for others to understand and maintain your work!
