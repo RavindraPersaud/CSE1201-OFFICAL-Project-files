@@ -37,7 +37,11 @@ int user_choice(){
 }
 
 
-//Display the main menu and prompt the user for thier choice
+/*
+main_menu:
+Displays the main menu options to the user by printing them using `printf()`. 
+This provides a clear list of available actions, allowing users to interact with the core functionalities of the program effectively.
+*/
 
 void main_menu() {
     printf("0. Store a new note/message\n");
@@ -48,7 +52,11 @@ void main_menu() {
     printf("5. Exit program\n\n");
 }
 
-//Return what method the user wants to search by
+/*
+search_menu:
+Presents search options for finding notes or messages by criteria like Title, ID, or Phrase. 
+It lists these methods using `printf()`, enabling users to locate specific information efficiently based on their preferences.
+*/
 void search_menu() {
     printf("Do you want to search by:\n");
     printf("1. Title\n");
@@ -59,13 +67,18 @@ void search_menu() {
 }
 
 
-// Menu operations for deleting a message
+/*
+delete_message:
+Handles the process of deleting messages by prompting users to view all IDs before deletion, asking for confirmation and the message ID 
+to delete. It uses placeholders for displaying and deleting messages, providing clear instructions to prevent accidental deletions 
+and enabling effective management of stored messages.
+*/
 void delete_message() {
     int view_messages_choice, delete_choice;
     int display_delete_message_menu = 1;
     
     while (display_delete_message_menu == 1){
-        // Ask if the user wants to view all IDs before deleting a message and get their response.
+        // Asks if the user wants to view all IDs before deleting a message and get their response.
         printf("Show all messages before choosing what to delete?\n\n");
         printf("1. Yes\n");
         printf("2. No\n");
@@ -73,7 +86,7 @@ void delete_message() {
         view_messages_choice = user_choice();
 
         if (view_messages_choice == 1) {
-            // Placeholder for displaying all message IDs
+            // Placeholder for displaying all message IDs.
             printf("Displaying all message IDs...\n");
             end_of_menu();
             break;
@@ -90,7 +103,7 @@ void delete_message() {
         }
     }
 
-    //Ask user if they want to delete message/go back to main menu
+    //Asks the user if they want to delete a message or go back to main menu.
     while(display_delete_message_menu == 1){
         printf("What would you like to do?\n\n");
         printf("1. Delete message (requires ID)\n");
@@ -98,7 +111,7 @@ void delete_message() {
         printf("Enter your choice: ");
         delete_choice = user_choice();
 
-        //Activate delete message function. Doesn't  break from loop to allow multiple deletions.
+        //Activates delete message function. Doesn't break from loop to allow multiple deletions.
         if (delete_choice == 1) {
             // Placeholder for deleting a message
             int message_id;
@@ -126,7 +139,11 @@ void delete_message() {
 }
 
 
-//Function that prints at the end of menus to let you know the previous menu has been closed
+/*
+end_of_menu:
+Outputs a visual separator using `printf()` to indicate the end of a menu operation. 
+This helps users recognize the completion of an action and enhances readability within the user interface.
+*/
 void end_of_menu(){
     printf("--------------------------------------------------------------------------------\n\n");
 }
