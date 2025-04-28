@@ -1,8 +1,5 @@
-//a C header file that provides functions for input and output operations, such as reading from and writing to files and the console.
 #include <stdio.h>
-//a C header file that provides functions for memory allocation, process control, conversions, and other utility operations.
 #include <stdlib.h>
-//a C header file that provides functions for manipulating C-style strings and memory blocks.
 #include <string.h>
 
 //Struct for each record
@@ -40,7 +37,7 @@ void store_message(){
         //safe case 
         if (fptr == NULL) {
             printf("Error opening file\n");
-            return 1;
+            return;
         }
 
         //writes struct to dat file
