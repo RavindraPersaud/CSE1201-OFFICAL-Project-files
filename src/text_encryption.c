@@ -11,7 +11,7 @@ Handles the encryption and decryption of messages
 /*
 Columnar Decryption function - decrypt
 --------------------------------------------
-Decrypts messages ecnrypted by the columnar transposition cipher.
+Decrypts messages ecnrypted by the columnar transposition algorithm.
 Reuses most variables from encrpyt function.
 Gets's back matrix from encrypted text.
 */
