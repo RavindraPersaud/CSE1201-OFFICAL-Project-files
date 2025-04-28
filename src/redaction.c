@@ -1,3 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+#define MAX_MESSAGE_LENGTH 1000  // You also need this defined!
+
 // Function to redact a message by replacing a specific word with asterisks
 char* redact_message(char* message, const char* target_word) {
     if (message == NULL || target_word == NULL) {
