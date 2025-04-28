@@ -17,7 +17,7 @@ typedef struct {
 Creates structs containing ID,Title and message then
 stores them in a .dat file
 */
-int store_message(){
+void store_message(){
     //initializing file pointer
     FILE *fptr;
     int run = 1;
@@ -53,6 +53,6 @@ int store_message(){
         while ((getchar()) != '\n');
 
     }
-    return 0;
+    return;
 }
 

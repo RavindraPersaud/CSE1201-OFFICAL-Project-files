@@ -3,8 +3,8 @@ menu_functions.c:
 Handles menu information and directing the user's actions to the requested functions across program
 */
 #include <stdio.h>
+#include "../include/menu_functions.h"
 
-void end_of_menu();
 
 
 /*
@@ -19,6 +19,8 @@ That chosen number is then returned and the respective menu user_choice() is in 
 
 Then clear the input buffer to discard any invalid input.
 */
+
+
 int user_choice(){ 
     int choice;
     printf("Enter your choice: ");
@@ -37,7 +39,7 @@ int user_choice(){
 
 //Display the main menu and prompt the user for thier choice
 
-int main_menu() {
+void main_menu() {
     printf("0. Store a new note/message\n");
     printf("1. View all notes and messages.\n");
     printf("2. Search for note/message.\n");

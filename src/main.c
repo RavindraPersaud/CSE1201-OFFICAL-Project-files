@@ -1,12 +1,14 @@
 #include <stdio.h>
-
+#include "../include/menu_functions.h"
 //menu.c
 
-int main_menu();
-void search_menu();
-void delete_message();
-void end_of_menu();
-int user_choice();
+//modify
+
+void store_message();
+
+//load messages.c
+int load_messages();
+
 
 int main(){
     printf("WELCOME TO OUR NOTES PROGRAM!\nSee README.md for help.\n\n");
@@ -24,12 +26,14 @@ int main(){
             //Take user to store message menu
             case 0:
                 printf("Storing a new note/message.\n\n");
+                store_message();
                 end_of_menu();
                 break;
 
             //Print all messages to the screen
             case 1:
                 printf("Viewing all notes/messages\n\n");
+                load_messages();
                 end_of_menu();
                 break;
 

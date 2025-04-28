@@ -1,7 +1,7 @@
 #include "message.h"
 #include <stdio.h>
 #include <string.h>
-
+int x = 3;
 void editMessage() {
     
     int editIndex;

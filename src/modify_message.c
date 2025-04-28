@@ -13,11 +13,13 @@ typedef struct {
     char content[MAX_LEN];
     int isEncrypted;
     char decryptedMessage[MAX_LEN];
-} Message;
+} 
+Message;
 
-extern Message *messages;
-extern int totalMessages;
-extern int messageCapacity;
+
+Message *messages;
+int totalMessages;
+int messageCapacity;
 
 
 void edit_message() {
