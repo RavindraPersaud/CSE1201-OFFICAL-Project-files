@@ -10,4 +10,8 @@ void end_of_menu();
 int user_choice();
 
 
+<<<<<<< Updated upstream
 #endif
+=======
+#endif
+>>>>>>> Stashed changes
