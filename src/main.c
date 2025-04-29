@@ -1,18 +1,12 @@
 #include <stdio.h>
-
+#include "../include/helper_functions.h"
+#include "../include/menu_functions.h"
+#include "../include/search_functions.h"
 //menu.c
 
-int search_by_phrase();
-int search_by_id();
-int search_by_title();
 
 int load_messages();
 int store_message();
-int main_menu();
-void search_menu();
-void delete_message();
-void end_of_menu();
-int user_choice();
 
 int main(){
     printf("WELCOME TO OUR NOTES PROGRAM!\nSee README.md for help.\n\n");
@@ -98,7 +92,7 @@ int main(){
 
             //Display deletion menu 
             case 4:
-                delete_message(); 
+                delete_menu(); 
                 end_of_menu();
                 break;
 

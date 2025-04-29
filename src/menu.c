@@ -6,9 +6,8 @@ Handles menu information and directs the user's actions to the requested functio
 */
 
 #include <stdio.h>
+#include "../include/menu_functions.h"
 
-
-void end_of_menu();
 int delete_rec_by_id();
 void load_messages();
 
@@ -46,7 +45,7 @@ int user_choice(){
 main_menu
 Display the main menu and prompt the user for their choice.
 */
-int main_menu() {
+void main_menu() {
     printf("0. Store a new note/message\n");
     printf("1. View all notes and messages.\n");
     printf("2. Search for note/message.\n");
@@ -76,7 +75,7 @@ Menu operations for deleting a message.
 Allows the user to view all messages before deleting, 
 then choose whether to delete a message or return to main menu.
 */
-void delete_message() {
+void delete_menu() {
     int view_messages_choice, delete_choice;
     int display_delete_message_menu = 1;
     

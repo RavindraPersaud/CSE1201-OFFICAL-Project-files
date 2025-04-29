@@ -5,7 +5,6 @@
 //a C header file that provides functions for manipulating C-style strings and memory blocks.
 #include <string.h>
 
-void load_messages();
 //Struct for each record
 typedef struct {
     int ID;

@@ -2,7 +2,7 @@
 #define MENU_H
 
 
-void delete_message();
+void delete_menu();
 
 void end_of_menu();
 

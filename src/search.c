@@ -11,6 +11,7 @@ Allows search by:
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../include/search_functions.h"
 
 // Struct representing a record
 typedef struct {
@@ -32,7 +33,6 @@ opens file in "read binary" mode
 Prints all matching records.
 Returns 0 on success, 1 on error.
 */
-
 void search_by_phrase() {
     int found = 0;
     char phrase[288];
@@ -68,6 +68,7 @@ void search_by_phrase() {
     return;
 }
 
+
 /*
 search_by_id()
 -----------------------------------------
@@ -75,8 +76,6 @@ Searches for a record by its unique ID.
 Prints the matching record.
 Returns 0 on success, 1 on error.
 */
-
-
 void search_by_id() {
     int id;
     int found = 0;
@@ -111,6 +110,7 @@ void search_by_id() {
 
     return;
 }
+
 
 /*
 search_by_title()
@@ -152,6 +152,7 @@ void search_by_title() {
 
     return;
 }
+
 
 //Asks user if they want to decrypt message then calls the decrypt function
 void ask_decrypt(Record rec) {

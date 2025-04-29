@@ -14,7 +14,6 @@ and replaces them while maintaining other text structure.
 #include <string.h>
 
 
-#define MAX_MESSAGE_LENGTH 288
 #define MAX_WORDS_TO_REDACT 50
 
 
@@ -33,7 +32,7 @@ Returns:
 - NULL if inputs are invalid or memory allocation fails.
 */
 char * redact_message(char *message, const char *target_words[], int num_words) {
-    int max_message_length = 280
+    const int max_message_length = 288;
 
 
 
@@ -42,7 +41,7 @@ char * redact_message(char *message, const char *target_words[], int num_words) 
         return NULL;
     }
     
-    char * redacted_message = (char*)malloc(MAX_MESSAGE_LENGTH *sizeof(char));
+    char * redacted_message = (char*)malloc(max_message_length *sizeof(char));
     
     if (redacted_message == NULL) {
         return NULL;

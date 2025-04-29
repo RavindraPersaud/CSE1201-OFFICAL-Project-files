@@ -4,7 +4,7 @@
 ## Table of Contents
 - [Purpose of File](#purpose-of-file)
 
-- [Coding Style](#coding-style)
+- [Code Formatting](#code-formatting)
   - [Naming Conventions](#naming-conventions)
   - [Curly Braces and Formatting](#curly-braces-and-formatting)
   - [Whitespace Rules](#whitespace-rules)
@@ -27,20 +27,27 @@ This document provides rules for maintaining **readability**, **consistency**, a
 
 ******
 
-## Coding Style
+## Code Formatting
 
 ### Naming Conventions
 - Use **snake_case** for variables, functions, and filenames:
   my_file;
   my_function();
-  ```
+  
 
 - Use **PascalCase** for structure names:
-  ```c
+  
   typedef struct MyStruct {
       // fields
   } MyStruct;
-  
+
+- Use **UPPER_SNAKE_CASE** aka **MACRO_CASE** for any variables that are read only. i.e Macros and the variables 
+modified by the const data modifier.
+    #define MY_HEADER_H 
+    #define IMPORTANT_SCALE_FACTOR 3
+
+    const int MAXIMUM_FIELD_LENGTH;
+
 
 ******
 
@@ -91,9 +98,8 @@ Example:
 ## Documentation Rules
 
 ### Commenting Practices
-- Place comments directly **above** the code they describe.
+- Always place comments directly **above** the code they describe.
 - Use `/* */` for longer explanations.
-
 Example:
 // Initializes variables
 int x = initialize_variables();
@@ -107,6 +113,7 @@ int initialize_system() {
     // code
 }
 
+
 ### File Description
 Include a description at the top of each file:
 /*
@@ -114,10 +121,6 @@ my_file.c:
 Calculates the sum of two numbers for the main.c file to print.
 It also handles error checking and formatting.
 */
-
-Skip two lines when conducting this and skip two more lines when writing actual code.
-Additionally skip two lines functions between functions 
-
 
 ******
 
@@ -141,15 +144,6 @@ int calculate_exponent_sums(int number, int exponent1, int exponent2) {
 ### Unnecessary Documentation
 Avoid obvious, repetitive comments inside simple functions.
 
-**Do:**
-// Example of a small function for demonstration
-int small_function() {
-    printf("This is a small function.");
-    printf("It does only 1 or 2 things.");
-    return 0;
-}
-
-
 **Don't:**
 int small_function() {
     // Prints to the terminal that this is a small function
@@ -164,11 +158,18 @@ int small_function() {
 }
 
 
+**Do:**
+// Example of a small function for demonstration
+int small_function() {
+    printf("This is a small function.");
+    printf("It does only 1 or 2 things.");
+    return 0;
+}
+
+
 ******
 
 ## Project File Structure
-
-```
 /cse1201_official_project
 |-- /src
 |   |-- main.c
@@ -198,7 +199,7 @@ int small_function() {
 |
 |-- Makefile
 |-- README.md
-```
+
 
 ******
 

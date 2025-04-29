@@ -24,7 +24,7 @@ void replace_word(char *message, const char *word) {
 }
 
 int main() {
-    char message[256] = "She metal on my gear till im solid: Metal Gear Solid";
+    char message[288] = "She metal on my gear till im solid: Metal Gear Solid";
     char word[50];
 
     printf("Original message: %s\n", message);
