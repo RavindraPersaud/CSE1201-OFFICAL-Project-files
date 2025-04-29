@@ -130,7 +130,7 @@ To prevent unauthorized access:
 | Issue                            | Solution                                           |
 |----------------------------------|----------------------------------------------------|
 | Program won't start              | Ensure all file are properly complied              |
-| Messages not saving              | Ensure `records.dat` is writable and exists        |
+| Messages not saving              | Ensure records.dat is writable and exists        |
 | Wrong password error             | Check password for typos                           |
 | Search not returning results     | Ensure you entered correct phrase/title/ID         |
 
