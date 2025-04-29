@@ -1,81 +1,100 @@
-/*
-store_message.c
-
-Allows users to create message records containing an ID, title, and message.
-Each record is stored by appending it to the 'records.dat' binary file.
-Supports adding multiple records in a single session.
-
-*/
-
-// Input/output operations (file handling, console printing)
-#include <stdio.h>  
-// General utilities (memory allocation, process control)  
-#include <stdlib.h>
-// String manipulation functions   
-#include <string.h>   
+#include <stdio.h>    // input/output operations
+#include <stdlib.h>   // memory allocation, conversions, etc.
+#include <string.h>   // string manipulation
 
 
-/*
-Record
+// Function prototypes
+int user_choice();
+char* encrypt(char *message, char *key);
+void store_message();
 
-Defines the structure used to store individual messages in the records.dat file.
-
-Fields:
-- ID: Unique identifier for the record.
-- title: Title of the message (max 49 characters + null terminator).
-- message: Content of the message (max 287 characters + null terminator).
-
-*/
+// Struct for each record
 typedef struct {
     int ID;
+    int is_encrypted;
     char title[50];
     char message[288];
 } Record;
 
 
 /*
-store_message
-
-Prompts the user to enter an ID, title, and message.
-Appends the entered record to the 'records.dat' binary file.
-
-Returns:
-- None.
-
-*/
+ * Store Message Function
+ * Creates structs containing ID, Title and Message, then
+ * stores them in a .dat file
+ */
 void store_message() {
-    
-    FILE* fptr;
+    FILE *fptr;
     int run = 1;
-    
+    int choice;
+
     while (run == 1) {
-        
         Record rec;
-        
-        printf("Enter ID: ");
-        scanf("%d", &rec.ID);
-        
-        printf("Enter Title: ");
-        scanf(" %[^\n]", rec.title);
-        
-        printf("Enter Message: ");
-        scanf(" %[^\n]", rec.message);
-        
-        fptr = fopen("records.dat", "ab");  // Open file in append-binary mode
-        
-        if (fptr == NULL) {
-            printf("Error: Unable to open file 'records.dat'.\n");
-            return;
+        int run1 = 1;
+        int last_id = 0; 
+        char message[288];
+        char key[50];
+
+        // Find the last ID
+        fptr = fopen("../data/message_storage.dat", "rb");
+        if (fptr != NULL) {
+            fseek(fptr, -(long)sizeof(Record), SEEK_END); //Goes to the last struct 
+            if (fread(&rec, sizeof(Record), 1, fptr) == 1) {
+                last_id = rec.ID;//gets the id of last struct
+            }
+            fclose(fptr);
         }
         
-        fwrite(&rec, sizeof(Record), 1, fptr);  // Write the record to the file
+
+        rec.ID = last_id + 1;
+
+        printf("Enter Title: ");
+        scanf(" %50[^\n]", rec.title);
+
+        printf("Enter Message: ");
+        scanf(" %288[^\n]", message);
+
+        printf("Do you want to:\n1.Encrypt File\n2.Censor Message\n3.Store Normally\n");
+        choice = user_choice();
+        while(run1){
+            if(choice == 1){
+                printf("Enter Key: ");
+                scanf("%s", key);
+
+                char *encrypted = encrypt(message, key);
+                strncpy(rec.message, encrypted, sizeof(rec.message));
+                rec.message[sizeof(rec.message) - 1] = '\0';
+                free(encrypted); // free memory allocated in encrypt
+                rec.is_encrypted = 1;
+                break;
+            }
+            else if(choice == 2){
+                //insert censor function
+            }
+            else if(choice == 3){
+                strncpy(rec.message, message, sizeof(rec.message));
+                rec.message[sizeof(rec.message) - 1] = '\0';
+                rec.is_encrypted = 0;
+                break;
+            }else{
+                printf("Invalid input");
+            }
+
+        }
+        
+
+        // Write the full struct to file
+        fptr = fopen("../data/message_storage.dat", "ab");
+        if (fptr == NULL) {
+            printf("Error opening file\n");
+            return;
+        }
+
+        fwrite(&rec, sizeof(Record), 1, fptr);
         fclose(fptr);
-        
-        printf("Type 0 to exit, or 1 to add another record: ");
+
+        printf("Type 0 to exit, 1 to add another record: ");
         scanf("%d", &run);
-        
-        while (getchar() != '\n');  // Clear input buffer
+        while ((getchar()) != '\n'); // Clear input buffer
     }
-    
-    return;
 }
+
