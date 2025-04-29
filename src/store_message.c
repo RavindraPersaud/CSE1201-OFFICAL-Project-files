@@ -1,6 +1,6 @@
-#include <stdio.h>    // input/output operations
-#include <stdlib.h>   // memory allocation, conversions, etc.
-#include <string.h>   // string manipulation
+#include <stdio.h>    
+#include <stdlib.h>   
+#include <string.h>   
 
 
 // Function prototypes

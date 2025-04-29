@@ -5,7 +5,9 @@ This file stores functions and constant values that are reused throuhout multipl
 
 
 #include <stdio.h>
+
 #include "../include/helper_functions.h"
+
 
 /*
 user_choice:

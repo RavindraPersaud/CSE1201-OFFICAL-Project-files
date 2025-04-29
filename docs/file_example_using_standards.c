@@ -1,6 +1,5 @@
 /*
 standards_test.c:
-
 Demonstrates adherence to the CSE1201 Project Standards.
 Tests naming conventions, curly braces, whitespace, commenting, and file organization.
 Used for validating correct coding style across the project.

@@ -11,6 +11,7 @@ defined in storage.c.
 #include <stdlib.h>
 #include <string.h>
 
+
 //Struct for each record
 typedef struct {
     int ID;
