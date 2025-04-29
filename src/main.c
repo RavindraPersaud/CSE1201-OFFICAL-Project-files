@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 //menu.c
-
+void modify();
 int search_by_phrase();
 int search_by_id();
 int search_by_title();
@@ -92,6 +92,7 @@ int main(){
             //Display modify menu
             case 3:
                 printf("Modifying a previously stored note.\n");
+                modify();
                 end_of_menu();
                 break;
 
