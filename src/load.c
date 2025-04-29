@@ -23,7 +23,7 @@ void load_messages(){
     FILE *fptr;
 
     //Opens file in "read binary mode"
-    fptr = fopen("records.dat", "rb");   
+    fptr = fopen("../data/message_storage.dat", "rb");   
 
     //placeholder record
     Record rec;

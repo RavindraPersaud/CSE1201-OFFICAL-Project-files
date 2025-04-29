@@ -154,3 +154,4 @@ This project was developed by **Group 2** for **CSE1201 – Introduction to Prog
 
 
 We worked together to ensure each function of the message system—from storage to encryption—was implemented according to the CSE1201 project Specifications.
+gcc main.c menu.c load.c message_mod.c search.c store_message.c delete_message.c -o NotPad--

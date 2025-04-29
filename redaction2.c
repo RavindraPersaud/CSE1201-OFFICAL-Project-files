@@ -14,12 +14,12 @@ and replaces them while maintaining other text structure.
 #include <string.h>
 
 
-#define MAX_MESSAGE_LENGTH 288
+#define MAX_MESSAGE_LENGTH 1000
 #define MAX_WORDS_TO_REDACT 50
 
 
 /*
-redact_message:
+redact_message
 
 Redacts a message by replacing every occurrence of any target word with asterisks.
 
@@ -32,17 +32,13 @@ Returns:
 - A newly allocated string with the target words replaced by asterisks.
 - NULL if inputs are invalid or memory allocation fails.
 */
-char * redact_message(char *message, const char *target_words[], int num_words) {
-    int max_message_length = 280
-
-
-
-    //if no info is given for either the message, the list of words, or the number of words, return nothing.
+char* redact_message(char* message, const char* target_words[], int num_words) {
+    
     if (message == NULL || target_words == NULL || num_words <= 0) {
         return NULL;
     }
     
-    char * redacted_message = (char*)malloc(MAX_MESSAGE_LENGTH *sizeof(char));
+    char* redacted_message = (char*)malloc(MAX_MESSAGE_LENGTH * sizeof(char));
     
     if (redacted_message == NULL) {
         return NULL;
@@ -50,30 +46,30 @@ char * redact_message(char *message, const char *target_words[], int num_words) 
     
     strcpy(redacted_message, message);
     
-    char * current_position = redacted_message;
+    char* current_pos = redacted_message;
     
-    while (*current_position != '\0') {
+    while (*current_pos != '\0') {
         
-        //Skip non-alphabetic characters
-        while (*current_position != '\0' && !isalpha((unsigned char)*current_pos)) {
-            current_position++;
+        // Skip non-alphabetic characters
+        while (*current_pos != '\0' && !isalpha((unsigned char)*current_pos)) {
+            current_pos++;
         }
         
-        if (*current_position == '\0') {
+        if (*current_pos == '\0') {
             break;
         }
         
-        char* word_start = current_position;
+        char* word_start = current_pos;
         
         // Find end of the word
-        while (*current_position != '\0' && isalpha((unsigned char)*current_pos)) {
-            current_position++;
+        while (*current_pos != '\0' && isalpha((unsigned char)*current_pos)) {
+            current_pos++;
         }
         
-        char temp = *current_position;
-        *current_position = '\0';
+        char temp = *current_pos;
+        *current_pos = '\0';
         
-        //Check against all target words
+        // Check against all target words
         for (int i = 0; i < num_words; i++) {
             if (strcmp(word_start, target_words[i]) == 0) {
                 int target_length = strlen(target_words[i]);
@@ -84,7 +80,7 @@ char * redact_message(char *message, const char *target_words[], int num_words) 
             }
         }
         
-        *current_position = temp;
+        *current_pos = temp;
     }
     
     return redacted_message;
@@ -109,10 +105,15 @@ int main() {
     const char* target_words_ptrs[MAX_WORDS_TO_REDACT];
     int num_words = 0;
     
-    message[] = "One day me been a babonaam and me see sitaira pan de dam and meh ask sitara wuh sheh do deh. ";  
+    printf("Enter a message: ");
+    if (fgets(message, sizeof(message), stdin) == NULL) {
+        printf("Failed to read message.\n");
+        return 1;
+    }
+    
     message[strcspn(message, "\n")] = '\0'; // Remove newline character if present
-
-    printf("%s", message);
+    
+    
     printf("Enter the words to redact (separated by commas): ");
     if (fgets(redaction_input, sizeof(redaction_input), stdin) == NULL) {
         printf("Failed to read redaction words.\n");
