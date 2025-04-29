@@ -68,9 +68,16 @@ void store_message() {
                 break;
             }
             else if(choice == 2){
-                printf("Censoring message:");
+                printf("Censoring message:\n");
+                strncpy(rec.message, message, sizeof(rec.message));
+                rec.message[sizeof(rec.message) - 1] = '\0';
+            
+                int c;
+                while ((c = getchar()) != '\n' && c != EOF); 
+            
+                redact(rec.message);
+                rec.is_encrypted = 0;
                 break;
-                //insert censor function
             }
             else if(choice == 3){
                 strncpy(rec.message, message, sizeof(rec.message));
