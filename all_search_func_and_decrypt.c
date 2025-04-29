@@ -155,9 +155,12 @@ void search_by_title() {
 /*
 decrypt()
 -----------------------------------------
-Takes encrypted message along with a key 
-and decrypts the message using that key.
-Prints the decrypted message.
+Decrypts an encrypted message using a columnar transposition cipher based on the provided key.
+message: A pointer to the encrypted message string.
+key: A pointer to the key string used for decryption. 
+Returns:
+A newly allocated string containing the decrypted message.
+The caller is responsible for freeing the returned memory after use.
 */
 
 
@@ -184,7 +187,7 @@ char* decrypt(char* message, char* key) {
             counter += 1;
         }
     }
-    //This sorts the key into alphabetical ordere
+    
     for (int k = 0; k < key_len; k++) {
         for (int l = k + 1; l < key_len; l++) {
             if ((int)mod_key[l] < (int)mod_key[k]) {
@@ -195,15 +198,14 @@ char* decrypt(char* message, char* key) {
         }
     }
 
-    //creates a list to keep track of what spaces have been filled(This is used if a key as repeating letters)
-    int used[key_len]; //list created
-    for (int i = 0; i < key_len; i++) used[i] = 0;//fills the list with 0
+    int used[key_len];
+    for (int i = 0; i < key_len; i++) used[i] = 0;
     for (int p = 0; p < key_len; p++) {
-        int num = (int)key[p];//set num to the ascii of the letter and key inex p
+        int num = (int)key[p];
         for (int j = 0; j < key_len; j++) {
             if ((int)mod_key[j] == num && used[j] == 0) { 
-                strcpy(new_matrix[p], matrix[j]);//coppies the matrix at index j into new matrix at index p
-                used[j] = 1;//Marks the spot as 1 to prevent repeating characters from getting put in the same place
+                strcpy(new_matrix[p], matrix[j]);
+                used[j] = 1;
                 break;
             }
         }
@@ -222,7 +224,8 @@ char* decrypt(char* message, char* key) {
     return full_sentence;
 }
 
-//Asks user if they want to decrypt message then calls the decrypt function
+/*Asks user if they want to decrypt message then calls the decrypt function
+*/
 void ask_decrypt(Record rec) {
     int dec;
     char key[50];
