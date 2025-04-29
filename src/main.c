@@ -2,8 +2,9 @@
 #include "../include/helper_functions.h"
 #include "../include/menu_functions.h"
 #include "../include/search_functions.h"
-//menu.c
 
+//menu.c
+void modify();
 int load_messages();
 int store_message();
 

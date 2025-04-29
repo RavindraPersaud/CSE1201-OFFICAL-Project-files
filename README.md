@@ -37,14 +37,14 @@ Steps:
 1.Compile the program using GCC:
 
 ```bash
-gcc main.c menu.c search.c delete_message.c redaction.c text_encryption.c modify_message.c edit_modify_messages.c globals.c -o program
+gcc main.c menu.c load.c message_modifyers.c search.c store_message.c delete_message.c modify_message.c -o NotPad--
 ```
 
 ### Execution  
 2.Run the program:
 
 ```bash
-./program
+./NotPad--
 ```
 
 ---
@@ -154,4 +154,3 @@ This project was developed by **Group 2** for **CSE1201 – Introduction to Prog
 
 
 We worked together to ensure each function of the message system—from storage to encryption—was implemented according to the CSE1201 project Specifications.
-gcc main.c menu.c load.c message_modifyers.c search.c store_message.c delete_message.c -o NotPad--
