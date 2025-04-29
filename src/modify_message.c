@@ -2,75 +2,68 @@
 #include <string.h>
 #include <stdlib.h>
 
-
-#define MAX_LEN 1024
-#define PASS "your_password_here"
-
-
 typedef struct {
-    char id[MAX_LEN];
-    char title[MAX_LEN];
-    char content[MAX_LEN];
-    int isEncrypted;
-    char decryptedMessage[MAX_LEN];
-} 
-Message;
+    int ID;
+    int is_encrypted;
+    char title[50];
+    char message[288];
+} Record;
+void modify();
 
+void modify(){
+    int id;
+    int found = 0;
+    printf("Enter Message ID:");
+    scanf("%d", &id);
 
-Message *messages;
-int totalMessages;
-int messageCapacity;
+    FILE *fptr = fopen("../data/message_storage.dat", "rb");
 
-
-void edit_message() {
-    
-    int editIndex;
-    printf("\nEnter the message index of the message you want to edit: ");
-    scanf("%d", &editIndex);
-    getchar(); // consume newline character
-
-    if (editIndex < 0 || editIndex >= totalMessages) {
-        printf("Invalid index entered.\n");
+    if (fptr == NULL) {
+        printf("Error opening file.\n");
         return;
     }
 
-    Message *msg = &messages[editIndex];
+    Record rec;
 
-    if (msg->isEncrypted) {
-        char pass[MAX_LEN];
-        printf("This message is encrypted. Please enter the password to decrypt it: ");
-        fgets(pass, MAX_LEN, stdin);
-        pass[strcspn(pass, "\n")] = 0;
-        
-        if (strcmp(pass, PASS) != 0) {
-    printf("Incorrect password. You do not have access to edit this message.\n");
-    return;
-}
+    while (fread(&rec, sizeof(Record), 1, fptr)) {
+        if (rec.ID == id) {
+            printf("ID: %d\n", rec.ID);
+            printf("Title: %s\n", rec.title);
+            printf("Message: %s\n", rec.message);
+            printf("Encrypted: %d\n\n", rec.is_encrypted);
 
-//This block of code will display the message, ask the user for the modified version and then update it
-    printf("Please see the Decrypted Message below: %s\n", msg->decryptedMessage);
-    printf("Enter the new information to be added: ");
+            printf("Modify message, this message will overwrite the previous:\n");
     
-    char newInfo[MAX_LEN];
-    fgets(newInfo, MAX_LEN, stdin);
-    newInfo[strcspn(newInfo, "\n")] = 0;
-    strcpy(msg->decryptedMessage, newInfo);
-    printf("Your message was updated!:)");
-    
-//This will do the same as above but for the plain text messages
-    
-} else {
-    printf("Please see your message below: %s\n", msg->content);
-    printf("Enter the new information to be added: ");
-    
-    char newInfo[MAX_LEN];
-    fgets(newInfo, MAX_LEN, stdin);
-    newInfo[strcspn(newInfo, "\n")] = 0;
-    strcpy(msg->content, newInfo);
-    printf("Your message was updated!:)");
-    
-    
+            getchar();  // consume leftover newline from previous scanf
+            fgets(rec.message, sizeof(rec.message), stdin);
+            rec.message[strcspn(rec.message, "\n")] = 0; // remove newline at end if present
+
+            // Now open the file to modify it
+            FILE *fptr = fopen("../data/message_storage.dat", "rb+"); // open for read/write
+            if (fptr == NULL) {
+                printf("Error opening file for modification.\n");
+                return;
+            }
+
+            Record temp;
+            while (fread(&temp, sizeof(Record), 1, fptr)) {
+                if (temp.ID == rec.ID) {
+                    fseek(fptr, -(long int)sizeof(Record), SEEK_CUR);
+                    fwrite(&rec, sizeof(Record), 1, fptr);
+                    printf("\nMessage updated successfully.\n");
+                    break;
+                }
+            }
+
+            fclose(fptr);
+            found = 1;
+        }
+    }
+    if (!found){
+        printf("Message not Found");
     }
 
-}
+    fclose(fptr);
 
+    
+}
