@@ -5,9 +5,11 @@
 //a C header file that provides functions for manipulating C-style strings and memory blocks.
 #include <string.h>
 
+void load_messages();
 //Struct for each record
 typedef struct {
     int ID;
+    int is_encrypted;
     char title[50];
     char message[288];
 } Record;
@@ -17,7 +19,7 @@ typedef struct {
 iterates throughout the dat file and prints the data stored within the 
 structs.
 */
-int load_messages(){
+void load_messages(){
     FILE *fptr;
 
     //Opens file in "read binary mode"
@@ -29,8 +31,9 @@ int load_messages(){
     while (fread(&rec, sizeof(Record), 1, fptr)){
         printf("ID: %d\n", rec.ID);
         printf("Title: %s\n", rec.title);
-        printf("Message: %s\n\n", rec.message);
+        printf("Message: %s\n", rec.message);
+        printf("Encrypted:%d\n\n", rec.is_encrypted);
     }
     fclose(fptr);  
-    return 0;
+    return ;
 }
