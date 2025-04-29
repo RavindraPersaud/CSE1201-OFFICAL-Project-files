@@ -8,10 +8,12 @@ Allows search by:
 - ID (exact match)
 */
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "../include/search_functions.h"
+
 
 // Struct representing a record
 typedef struct {
@@ -21,7 +23,9 @@ typedef struct {
     char message[288];
 } Record;
 
+
 char* decrypt(char message[], char key[]);
+
 void ask_decrypt(Record rec);
 
 
@@ -60,7 +64,7 @@ void search_by_phrase() {
         }
     }
     if (!found){
-        printf("Message not Found");
+        printf("Message not Found\n");
     }
     
     fclose(fptr);
@@ -103,7 +107,7 @@ void search_by_id() {
         }
     }
     if (!found){
-        printf("Message not Found");
+        printf("Message not Found\n");
     }
 
     fclose(fptr);
@@ -144,7 +148,7 @@ void search_by_title() {
         }
     }
     if (!found){
-        printf("Message not Found");
+        printf("Message not Found\n");
     }
     
 

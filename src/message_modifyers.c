@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 /*
  * Encrypt function
  * Encrypts message based on provided key by columnar transposition
@@ -75,6 +76,7 @@ char* encrypt(char *message, char *key) {
     return full_sentence;
 }
 
+
 /*
 decrypt()
 -----------------------------------------
@@ -82,7 +84,6 @@ Takes encrypted message along with a key
 and decrypts the message using that key.
 Prints the decrypted message.
 */
-
 char* decrypt(char* message, char* key) {
     int msg_len = strlen(message);
     int key_len = strlen(key);

@@ -63,8 +63,8 @@ void search_menu() {
     printf("Do you want to search by:\n");
     printf("1. Title\n");
     printf("2. ID\n");
-    printf("3. Phrase\n\n");
-    printf("4. Exit to Main Menu\n");
+    printf("3. Phrase\n");
+    printf("4. Exit to Main Menu\n\n");
 
 }
 

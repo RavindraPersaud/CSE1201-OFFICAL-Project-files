@@ -43,19 +43,20 @@ int main(){
                 while (show_search_menu == 1){
                     search_menu();
                     search_type = user_choice();
+                    end_of_menu();
 
 
+                    //search function by title 
                     if (search_type == 1) {
                         printf("Searching by Title.\n");
                         search_by_title();
-                        //search function by title 
                         end_of_menu();
 
                     }
                     
+                    //search function by id
                     else if (search_type == 2) {
                         printf("Searching by ID.\n");
-                        //search function by id
                         search_by_id();
                         end_of_menu();
                     } 
