@@ -1,14 +1,18 @@
 #include <stdio.h>
-#include "../include/menu_functions.h"
+
 //menu.c
 
-//modify
+int search_by_phrase();
+int search_by_id();
+int search_by_title();
 
-void store_message();
-
-//load messages.c
 int load_messages();
-
+int store_message();
+int main_menu();
+void search_menu();
+void delete_message();
+void end_of_menu();
+int user_choice();
 
 int main(){
     printf("WELCOME TO OUR NOTES PROGRAM!\nSee README.md for help.\n\n");
@@ -49,6 +53,7 @@ int main(){
 
                     if (search_type == 1) {
                         printf("Searching by Title.\n");
+                        search_by_title();
                         //search function by title 
                         end_of_menu();
 
@@ -57,11 +62,13 @@ int main(){
                     else if (search_type == 2) {
                         printf("Searching by ID.\n");
                         //search function by id
+                        search_by_id();
                         end_of_menu();
                     } 
                     
                     else if (search_type == 3) {
                         printf("Search by phrase\n");
+                        search_by_phrase();
                         //search function by phrase.
                         end_of_menu();
                     } 
@@ -91,7 +98,7 @@ int main(){
 
             //Display deletion menu 
             case 4:
-                delete_message();  
+                delete_message(); 
                 end_of_menu();
                 break;
 
