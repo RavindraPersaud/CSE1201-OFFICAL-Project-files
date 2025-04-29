@@ -10,6 +10,7 @@ void get_user_words(){
 
 }
 
+
 //Replace a word in a string with '*'
 void replace_word(char *message, const char *word) {
     char *position_of_substring;

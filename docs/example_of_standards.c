@@ -3,6 +3,7 @@ standards_test.c:
 Demonstrates adherence to the CSE1201 Project Standards.
 Tests naming conventions, curly braces, whitespace, commenting, and file organization.
 Used for validating correct coding style across the project.
+Disclaimer! Used purely for demonstrative purposes, file does not 
 */
 
 
@@ -13,22 +14,15 @@ Used for validating correct coding style across the project.
 #include "storage_manager.h"
 
 
-/*
-MyStruct:
-A sample structure following PascalCase naming.
-Used to demonstrate struct naming conventions and initialization.
-*/
+//Used to demonstrate two blank lines above and below a struct(including the comment).
 typedef struct MyStruct {
     int value;
     char label[50];
 } MyStruct;
 
 
-/*
-initialize_my_struct:
-Initializes a MyStruct instance with given value and label.
-Returns the initialized struct.
-*/
+//Initializes a MyStruct instance with given value and label then returns the initialized struct.
+
 MyStruct initialize_my_struct(int init_value, const char *init_label) {
     MyStruct new_struct;
 
@@ -39,21 +33,14 @@ MyStruct initialize_my_struct(int init_value, const char *init_label) {
 }
 
 
-/*
-print_my_struct:
-Prints the fields of a MyStruct instance.
-*/
+//Prints the fields of a MyStruct instance.
 void print_my_struct(MyStruct my_struct) {
     printf("Value: %d\n", my_struct.value);
     printf("Label: %s\n", my_struct.label);
 }
 
 
-/*
-main:
-Entry point of the program.
-Demonstrates initialization and printing of a struct instance.
-*/
+//Demonstrates initialization and printing of a struct instance.
 int main() {
 
     MyStruct sample = initialize_my_struct(42, "Test Label");

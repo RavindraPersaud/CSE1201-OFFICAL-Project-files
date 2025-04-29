@@ -51,9 +51,9 @@ modified by the const data modifier.
 
 ******
 
-### Curly Braces and Formatting
-- Always place the opening curly brace `{` on the same line as the control statement.
-- Always use curly braces `{}` even for single-line blocks.
+### Curly Braces 
+- Always place the opening curly brace { on the same line as the control statement.
+- Always use curly braces {} even for single-line blocks.
 
 Example:
 int main() {
@@ -67,21 +67,40 @@ if (condition) {
 ******
 
 ### Whitespace Rules
-- Use whitespace to clearly separate elements:
+- Use whitespace to clearly separate operators(=, >, && etc.) and symbols(",", "|", etc.) from values/variables.
+Incorrect:
+int x=123;
+Mylist = (1,2,3,4);
 
 Correct:
 int x = 123;
 Mylist = (1, 2, 3, 4);
 
+- Put two blank lines before and after functions and structs.(see example_of_standards.c)
+- It in mandatory to use a blank space above a comment in a code block, except for the first line of the block.
 
-Incorrect:
-int x=123;
-Mylist = (1,2,3,4);
+void cool_function(){ 
+    //Mandatory to start a code block right below the declaration . This function still adresses the comment below
+    int example_function();
+
+    //Lines taht have comments ater another are separated by a single space:
+    int for(i = 0; i < 10; i++){
+        printf("this is an example." )
+    }
+    }
+
+- It is optional to use a blank line to spearate adjacent lines of code in a code block.
+Allowed:
+int main(){
+    int x = 5 + 3
+    int y = x * 12
+    printf("%d is a really cool number.\n", y);
+}
 
 ******
 
 ### Header File Organization
-- Place **system headers** first, then **custom headers**.
+- Place **system libraries** in alphabetical order, a blank line,  **custom libraries**.
 - Alphabetize headers within each group.
 
 Example:
@@ -93,18 +112,17 @@ Example:
 
 ******
 
-******
 
 ## Documentation Rules
 
 ### Commenting Practices
 - Always place comments directly **above** the code they describe.
-- Use `/* */` for longer explanations.
+- Use /* */ for longer explanations.
 Example:
 // Initializes variables
 int x = initialize_variables();
 
-Multiline Example:
+
 /*
 Initializes variables and sets the system to default mode.
 Should be called at the start of the program.
@@ -112,7 +130,6 @@ Should be called at the start of the program.
 int initialize_system() {
     // code
 }
-
 
 ### File Description
 Include a description at the top of each file:
@@ -125,20 +142,19 @@ It also handles error checking and formatting.
 ******
 
 ### Concise Documentation
-- Summarize what the function/block does and why.
+- Ideally a good comment summarizes **what** the function/code block does and **why**.
 
 Example:
 /*
-Calculates the addition of the same number with two different exponents.
-Example: 3^2 + 3^5.
-The result is used in important_function() for further processing.
+Calculates the addition of the same number with two different exponents.(what)
+The result is used in important_function() for further processing. (why)
 */
 int calculate_exponent_sums(int number, int exponent1, int exponent2) {
     int sum = pow(number, exponent1) + pow(number, exponent2);
     return sum;
 }
 
-
+**Note:** The format of "what and why" is not a rigid rule, use own judgement to determine a comment's content.  
 ******
 
 ### Unnecessary Documentation
@@ -157,7 +173,6 @@ int small_function() {
     return 0;
 }
 
-
 **Do:**
 // Example of a small function for demonstration
 int small_function() {
@@ -166,19 +181,18 @@ int small_function() {
     return 0;
 }
 
-
 ******
 
+
 ## Project File Structure
-/cse1201_official_project
+/group-2-semester-project
 |-- /src
 |   |-- main.c
-|   |-- /task_1
-|   |
-|   |-- /task...
+|   |-- source_files.c
+|   |-- ...
 |
 |-- /include
-|   |-- function_name_1.h
+|   |-- header_files.h
 |   |-- ...
 |   
 |-- /data
@@ -190,28 +204,31 @@ int small_function() {
 |
 |-- README.md
 |-- NotPad--.exe
+|-- ...
 
 
 ******
-
+### /group-2-semester-project
+The root file taht contains the folders mentioned below, a user manual (README.md) and any random files/folders that 
+cannot be organised into the folders seen in the file structure.
 
 ### /src
 Contains **main.c** and primary source files.
 
 ### .c Files in /src
-Grouped based on the task they perform.
+The source files define functions which will be called in main.c or by other .c files.
 
 ### /include
-Stores header files (`.h`) for functions used across multiple `.c` files.
+Stores header files (.h) containing at minimum 2 callable items. If a .c file has 2 or more functions from it being
+called to another .c file, make a header file for it.
 
-### /storage
-Contains text/data files needed by the program.
+### /data
+Stores the .dat file that records the user's message information.
 
 ### /docs
-Holds all documentation files.
+Holds technical documentation and other relevant documents to the project for ease of access.
 
-
-***
+******
 
 ## Final Notes
 - Be **consistent** and **organized**.
