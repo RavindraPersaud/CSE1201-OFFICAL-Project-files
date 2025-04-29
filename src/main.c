@@ -4,7 +4,6 @@
 #include "../include/search_functions.h"
 //menu.c
 
-
 int load_messages();
 int store_message();
 
@@ -86,6 +85,7 @@ int main(){
             //Display modify menu
             case 3:
                 printf("Modifying a previously stored note.\n");
+                modify();
                 end_of_menu();
                 break;
 
