@@ -75,16 +75,16 @@ Encrypted messages are protected and may only be accessed using the right key.
 ---
 
 ###  Viewing Messages
-Displays all stored messages from `records.dat`:
+Displays all stored messages from records.dat:
 - Shows message ID, title, and content (if not encrypted)
 
 ---
 
 ###  Searching Messages
 Enables you to search by various method from the Search Menu:
-- `1. Title` – Exact match (case-sensitive)
-- `2. ID` – Unique identifier
-- `3. Phrase` – Substring within the message body
+- 1. Title – Exact match (case-sensitive)
+- 2. ID – Unique identifier
+- 3. Phrase – Substring within the message body
 
 Results found are printed to the screen.
 
@@ -107,13 +107,13 @@ Deletion involves copying all other records to a temp file, then replacing the o
 ---
 
 ### Redacting Words
-Replaces all instances of a particular word in a message with asterisks (e.g., `stupid` → `******`).
+Replaces all instances of a particular word in a message with asterisks (e.g., stupid → ******).
 
 ---
 
 ### Encrypting/Decrypting Messages
 Uses a **Columnar Transposition algorithm**:
-- Substitutes spaces with `-` before to encryption.
+- Substitutes spaces with - before to encryption.
 - Reads encrypted message in a columnar manner according to the key
 - Decryption restores original message using the key
 
@@ -121,7 +121,7 @@ Uses a **Columnar Transposition algorithm**:
 
 ## Password Protection
 To prevent unauthorized access:
-- A hardcoded password (`your_password_here`) is required to decrypt or modify encrypted messages.
+- A hardcoded password (your_password_here) is required to decrypt or modify encrypted messages.
 
 ---
 
