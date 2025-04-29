@@ -174,31 +174,22 @@ int small_function() {
 |-- /src
 |   |-- main.c
 |   |-- /task_1
-|   |   |-- function_name_1.c
-|   |
-|   |-- /task_2
-|   |   |-- function_name_2.c
-|   |   |-- function_name_3.c
 |   |
 |   |-- /task...
-|
-|-- /helper_functions
-|   |-- helper_function_name.c
-|   |-- ...
 |
 |-- /include
 |   |-- function_name_1.h
 |   |-- ...
 |   
-|-- /storage
-|   |-- storage_file.dat
+|-- /data
+|   |-- message_storage.dat
 |
 |-- /docs
 |   |-- document_1.md
-|   |-- document_2.pdf
+|   |-- ...
 |
-|-- Makefile
 |-- README.md
+|-- NotPad--.exe
 
 
 ******
