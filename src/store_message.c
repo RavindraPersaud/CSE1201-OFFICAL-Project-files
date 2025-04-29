@@ -68,6 +68,8 @@ void store_message() {
                 break;
             }
             else if(choice == 2){
+                printf("Censoring message:");
+                break;
                 //insert censor function
             }
             else if(choice == 3){
@@ -92,7 +94,8 @@ void store_message() {
         fwrite(&rec, sizeof(Record), 1, fptr);
         fclose(fptr);
 
-        printf("Type 0 to exit, 1 to add another record: ");
+        printf("0. Exit to main menu.\n");
+        printf("1. Add another record.\n");
         scanf("%d", &run);
         while ((getchar()) != '\n'); // Clear input buffer
     }

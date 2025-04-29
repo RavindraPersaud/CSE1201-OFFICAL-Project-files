@@ -7,10 +7,12 @@ Handles menu information and directs the user's actions to the requested functio
 
 #include <stdio.h>
 
+
 void end_of_menu();
-int delete_rec_by_title();
 int delete_rec_by_id();
 void load_messages();
+
+
 /*
 user_choice
 Retrieve the user's choice.
@@ -86,7 +88,6 @@ void delete_message() {
         printf("Show all messages before choosing what to delete?\n\n");
         printf("1. Yes\n");
         printf("2. No\n");
-        printf("Enter your choice: ");
         view_messages_choice = user_choice();
 
         if (view_messages_choice == 1) {
@@ -115,7 +116,6 @@ void delete_message() {
         printf("What would you like to do?\n\n");
         printf("1. Delete message (requires ID)\n");
         printf("2. Exit to menu\n");
-        printf("Enter your choice: ");
         delete_choice = user_choice();
 
         //Activate delete message function. Doesn't  break from loop to allow multiple deletions.
