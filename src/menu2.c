@@ -1,7 +1,10 @@
 /*
-menu_functions.c:
-Handles menu information and directing the user's actions to the requested functions across program
+menu_functions.c
+
+Handles menu information and directs the user's actions to the requested functions across the program.
+
 */
+
 #include <stdio.h>
 
 void end_of_menu();
@@ -9,10 +12,17 @@ int delete_rec_by_title();
 int delete_rec_by_id();
 void load_messages();
 /*
+user_choice
 Retrieve the user's choice.
-Checks the value scanf returns. Since we use %d, scanf should return a value of 1 if the user entered an integer.
-If the user did not enter an iteger, meaning choice !=1, it will convert the user's choice into a number.
-Then it would clear the input buffer and discard any invalid input.
+Checks the value scanf() returns. Since we use %d, scanf should return a value of 1 if the user entered an integer.
+
+If the user did not enter an integer (choice != 1), it will convert the user's choice into a number.
+The chosen number must be larger than any number int choice could possibly equal throughout the system.
+For now, 30 is larger than any choice value needed by the program.
+
+That chosen number is then returned, and the respective menu handles giving the error message.
+
+Clears the input buffer to discard any invalid input.
 */
 int user_choice(){ 
     int choice;
@@ -30,8 +40,10 @@ int user_choice(){
 }
 
 
-//Display the main menu and prompt the user for thier choice
-
+/*
+main_menu
+Display the main menu and prompt the user for their choice.
+*/
 int main_menu() {
     printf("0. Store a new note/message\n");
     printf("1. View all notes and messages.\n");
@@ -41,7 +53,11 @@ int main_menu() {
     printf("5. Exit program\n\n");
 }
 
-//Return what method the user wants to search by
+
+/*
+search_menu
+Return what method the user wants to search by.
+*/
 void search_menu() {
     printf("Do you want to search by:\n");
     printf("1. Title\n");
@@ -52,13 +68,21 @@ void search_menu() {
 }
 
 
-// Menu operations for deleting a message
+/*
+delete_message
+Menu operations for deleting a message.
+Allows the user to view all messages before deleting, 
+then choose whether to delete a message or return to main menu.
+*/
 void delete_message() {
     int view_messages_choice, delete_choice;
     int display_delete_message_menu = 1;
     
     while (display_delete_message_menu == 1){
-        // Ask if the user wants to view all IDs before deleting a message and get their response.
+
+         /* 
+        Ask if the user wants to view all IDs before deleting a message and get their response.
+        */
         printf("Show all messages before choosing what to delete?\n\n");
         printf("1. Yes\n");
         printf("2. No\n");
@@ -84,7 +108,9 @@ void delete_message() {
         }
     }
 
-    //Ask user if they want to delete message/go back to main menu
+     /*
+    Ask user if they want to delete a message or go back to the main menu.
+    */
     while(display_delete_message_menu == 1){
         printf("What would you like to do?\n\n");
         printf("1. Delete message (requires ID)\n");
@@ -119,11 +145,13 @@ void delete_message() {
 }
 
 
-//Function that prints at the end of menus to let you know the previous menu has been closed
+/*
+end_of_menu
+Function that prints at the end of menus to indicate the previous menu has been closed.
+*/
 void end_of_menu(){
     printf("--------------------------------------------------------------------------------\n\n");
 }
-
 
 
 
