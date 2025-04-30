@@ -6,26 +6,28 @@
 ---
 
 ## Table of Contents
-1. [Introduction](#introduction)  
-2. [Tutorial](#tutorial)  
-3. [Main Menu Options](#main-menu-options)  
-4. [Functional Overview](#functional-overview)  
-   - [Storing a Message](#storing-a-message)  
-   - [Viewing Messages](#viewing-messages)  
-   - [Searching Messages](#searching-messages)  
-   - [Modifying Messages](#modifying-messages)  
-   - [Deleting Messages](#deleting-messages)  
-   - [Redacting Words](#redacting-words)  
-   - [Encrypting/Decrypting Messages](#encryptingdecrypting-messages)  
-5. [Password Protection](#password-protection)  
-6. [Troubleshooting](#troubleshooting)  
-7. [Credits](#credits)  
-8. [Group Members](#group-members)
+---
+- [Introduction](#introduction)  
+- [Tutorial](#tutorial)  
+  - [Compilation](#compilation)  
+  - [Execution](#execution)  
+- [Main Menu Options](#main-menu-options)  
+- [Storing a Message](#option-0--store-a-new-notemessage) 
+- [Viewing Messages](#option-1--view-all-notes-and-messages)  
+- [Searching Messages](#option-2--search-for-a-notemessage)  
+- [Modifying Messages](#option-3--modify-a-previously-stored-note)  
+- [Deleting Messages](#option-4--delete-a-notemessage)  
+- [Exiting the Program](#option-5--exit-the-program)  
+- [Password Protection](#password-protection)  
+- [Troubleshooting](#troubleshooting)  
+- [Credits](#credits)  
+- [Group Members](#group-members)
+
 
 ---
 
 ## Introduction
-This C application which allows users to manage notes or messages. It includes features for storing, viewing, searching, modify, deleting, redacting, and encrypting/decrypting messages.
+This is a C application that allows users to manage notes or messages. It includes features for storing, viewing, searching, modify, deleting, redacting, and encrypting/decrypting messages.
 
 ---
 
@@ -35,7 +37,7 @@ This C application which allows users to manage notes or messages. It includes f
 Steps:
 
 1.Compile the program using GCC:
-
+Note: Please ensure you are in the group-2-semester-project/src directory before compiling.
 ```bash
 gcc src/*.c -o NotPad--.exe
 ```
@@ -50,6 +52,8 @@ gcc src/*.c -o NotPad--.exe
 ---
 
 ##  Main Menu Options
+When you run the program, you will be presented with a numbered menu. Follow the steps below based on your desired action:
+
 
 | Option | Description                                 |
 |--------|---------------------------------------------|
@@ -64,82 +68,75 @@ gcc src/*.c -o NotPad--.exe
 
 ##  Functional Overview
 
-###  Storing a Message
-Prompts user to enter:
-- A title[Character limit 50]
-- Message[Character limit 300] 
+### Option 0 Store a New Note/Message
+Choose Option 0 from the menu.
+Enter the Title (maximum 50 characters).
+Enter the Message Body (maximum 300 characters).
+Choose one of the following options:
+Encrypt the message (you will be prompted to enter a key).
+Redact specific words (provide a comma-separated list).
+Store the message as-is (unencrypted and uncensored).
+The message will be saved to records.dat.
 
-Then choose to encrypt, censor and store normally:
-1. Encrypt File
-    Enter key..
+### Option 1 – View All Notes and Messages
+Choose Option 1 from the menu.
+All stored messages will be displayed, showing:
+Message ID
+Title
+Content (if unencrypted)
+If a message is encrypted, only the ID and Title will be shown.
 
-Encrypted messages are protected and may only be accessed using the right key.
+### Option 2 – Search for a Note/Message
+Choose Option 2 from the menu.
+Select a search method:
+1 – By Title (case-sensitive, exact match)
+2 – By ID
+3 – By Phrase (search within the message body)
+Enter the appropriate search term.
+Matching results will be displayed.
 
----
+### Option 3 – Modify a Previously Stored Note
+Choose Option 3 from the menu.
+Enter the ID of the message you want to modify.
+If the message is encrypted, you will be asked to enter the correct password.
+Enter the new content for the message.
+Choose whether to:
+Re-encrypt the message,
+Redact new words, or
+Store it without changes.
+The old content will be overwritten.
 
-###  Viewing Messages
-Displays all stored messages from records.dat:
-- Shows message ID, title, and content (if not encrypted)
+### Option 4 – Delete a Note/Message
+Choose Option 4 from the menu.
+Enter the ID of the message you wish to delete.
+The program will ask for confirmation.
+Upon confirmation, the message will be permanently removed from records.dat.
 
----
+### Option 5 – Exit the Program
+Choose Option 5 from the menu.
+The program will close and return you to the terminal or command line.
 
-###  Searching Messages
-Enables you to search by various method from the Search Menu:
-- 1. Title – Exact match (case-sensitive)[Character limit 50]
-- 2. ID – Unique identifier
-- 3. Phrase – Substring within the message body
+### Password Protection
+Encrypted messages are secured using a user-defined key (password).
+You must enter the correct key to view or modify the encrypted message.
+The application does not store passwords in plain text for security reasons.
+Make sure to remember your key, as lost keys cannot be recovered.
 
-Results found are printed to the screen.
-
----
-
-###  Modifying Messages
-- Enter the id of the message to edit.
-- Encrypted messages needs password to access.
-- Once decrypted, the user may input new content which overwrites the previous data.
-
----
-
-### Deleting Messages
-Users can delete messages by: - Message ID
-
----
-
-### Redacting Words
-Replaces all instances of a particular word in a message with asterisks (e.g., stupid → ******).
-NotPad-- > Enter comma separated list of words you want to censor
-User: > test, list, showcase
-
----
-
-### Encrypting/Decrypting Messages
-Uses a **Columnar Transposition algorithm**:
-- Substitutes spaces with - before to encryption.
-- Reads encrypted message in a columnar manner according to the key
-- Decryption restores original message using the key
-
----
-
-## Password Protection
-To prevent unauthorized access:
-- A hardcoded password (your_password_here) is required to decrypt or modify encrypted messages.
-
----
 
 ## Troubleshooting
 
-| Issue                            | Solution                                           |
-|----------------------------------|----------------------------------------------------|
-| Program won't start              | Ensure all file are properly complied              |
-| Messages not saving              | Ensure that NotPad--.exe in within /src            |
-| Wrong password error             | Check password for typos                           |
-| Search not returning results     | Ensure you entered correct phrase/title/ID         |
+| Issue                            | Solution                                               |
+|----------------------------------|--------------------------------------------------------|
+| Program won't start              | Ensure all files are properly compiled                 |
+| Messages not saving              | Make sure `NotPad--` is run from the correct directory |
+| Wrong password error             | Double-check for typos in your password                |
+| Search not returning results     | Ensure you entered the exact title, ID, or phrase      |
 
 ---
 
 ## Credits
 
-This project was developed by **Group 2** for **CSE1201 – Introduction to Programming**.
+This project was developed by Group 2 for CSE1201 – Introduction to Programming.
 
 ### Group Members
 
@@ -153,5 +150,4 @@ This project was developed by **Group 2** for **CSE1201 – Introduction to Prog
 | Serina Rebecca Garrett  | 1037042                     |
 | Kyahri Whyte            | 1053151                     |
 
-We worked together to ensure each function of the message system—from storage to encryption—was implemented according 
-to the CSE1201 project Specifications.
+We collaborated to ensure every function—from storing to encrypting messages—was implemented according to the CSE1201 project specifications.
