@@ -45,10 +45,16 @@ void store_message() {
         printf("Enter Title: ");
         scanf(" %50[^\n]", rec.title);
 
+        int len = strlen(rec.title);
+        while (len > 0 && rec.title[len - 1] == ' ') {
+            rec.title[--len] = '\0'; 
+        }
+
+
         printf("Enter Message: ");
         scanf(" %288[^\n]", message);
 
-        printf("Do you want to:\n1.Encrypt File\n2.Censor Message\n3.Store Normally\n");
+        printf("\nDo you want to:\n1.Encrypt File\n2.Censor Message\n3.Store Normally\n");
         choice = user_choice();
         while(run1){
             if(choice == 1){
@@ -64,7 +70,7 @@ void store_message() {
                 break;
             }
             else if(choice == 2){
-                printf("Censoring message:\n");
+                printf("\nCensoring message:\n");
                 strncpy(rec.message, message, sizeof(rec.message));
                 rec.message[sizeof(rec.message) - 1] = '\0';
             
@@ -97,10 +103,12 @@ void store_message() {
         fwrite(&rec, sizeof(Record), 1, fptr);
         fclose(fptr);
 
-        printf("0. Exit to main menu.\n");
+        printf("\n0. Exit to main menu.\n");
         printf("1. Add another record.\n");
+        printf("Choice:");
         scanf("%d", &run);
         while ((getchar()) != '\n'); // Clear input buffer
     }
 }
+
 
