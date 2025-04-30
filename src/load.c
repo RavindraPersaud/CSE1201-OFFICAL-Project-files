@@ -11,6 +11,7 @@ iterates throughout the dat file and prints the data stored within the
 structs.
 */
 void load_messages(){
+    char slice[26];
     FILE *fptr;
 
     //Opens file in "read binary mode"
@@ -22,9 +23,18 @@ void load_messages(){
     while (fread(&rec, sizeof(Record), 1, fptr)){
         printf("ID: %d\n", rec.ID);
         printf("Title: %s\n", rec.title);
-        printf("Message: %s\n", rec.message);
+        //clears slice string
+        memset(slice, 0, sizeof(slice));
+        //copies up to the 21st index of rec.message into slice 
+        strncpy(slice,rec.message,21);
+        //adds EOL char to end of string
+        slice[21] = '\0';
+        //adds a "..." to the end of the slice for it to look like a preview
+        strcat(slice,"..."); 
+        printf("Message: %s\n", slice);
         printf("Encrypted:%d\n\n", rec.is_encrypted);
     }
     fclose(fptr);  
     return ;
 }
+
