@@ -119,4 +119,3 @@ void redact(char *message) {
     free(redacted);
 }
 
-
