@@ -37,7 +37,7 @@ Steps:
 1.Compile the program using GCC:
 
 ```bash
-gcc main.c menu.c load.c message_modifyers.c search.c store_message.c delete_message.c modify_message.c -o NotPad--
+gcc src/*.c -o NotPad.exe
 ```
 
 ### Execution  
