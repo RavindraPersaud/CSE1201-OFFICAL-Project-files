@@ -3,6 +3,9 @@
 #include <ctype.h>
 #include <string.h>
 #include "../include/helper_functions.h"
+
+void end_of_menu();
+
 // Counts how many words are separated by commas
 int count(char *message) {
     int count = 1;  
@@ -31,7 +34,7 @@ char **list_maker(char *message, int *redacted_word_count) {
         while (isspace(*token)) token++;
         char *end = token + strlen(token) - 1;
         while (end > token && isspace(*end)) *end-- = '\0';
-
+        
         //allocates memory for length of word + 1 for the EOL char
         new_list[index] = malloc(strlen(token) + 1);
         //copies the word(token) into that memory allocated
@@ -43,17 +46,15 @@ char **list_maker(char *message, int *redacted_word_count) {
         //moves onto the next word
         token = strtok(NULL, ",");
     }
-
     return new_list;
 }
 
 void redact(char *message) {
-    int len = strlen(message);
-    char input[len]; 
+    //declares array for input
+    char input[MAX_MESSAGE_SIZE]; 
     printf("Enter comma separated list of words you want to censor:");
     fgets(input, sizeof(input), stdin);
     input[strcspn(input, "\n")] = '\0';
-
 
     int redacted_word_count;
     char **redacted = list_maker(input, &redacted_word_count);
@@ -109,10 +110,11 @@ void redact(char *message) {
     redacted_message[j] = '\0';
     //copies redacted message into message
     strcpy(message, redacted_message);
-
-    
+    //prints the redacted code
     printf("Redacted: %s\n", message);
+    end_of_menu();
 
+    //frees the pointers in redacted
     for (int i = 0; i < redacted_word_count; i++) {
         free(redacted[i]);
     }
