@@ -160,8 +160,8 @@ char* ask_decrypt(Record rec) {
     char *decrypted;
 
     printf("Do you want to decrypt message?\n1.Yes\n2.No\nEnter Choice: ");
-    getchar();
     scanf("%d", &dec);
+    while ((getchar()) != '\n'); 
 
     if (dec == 1) {
         if (rec.is_encrypted) {
