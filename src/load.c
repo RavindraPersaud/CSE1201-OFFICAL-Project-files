@@ -1,14 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../include/helper_functions.h"
 
 //Struct for each record
-typedef struct {
-    int ID;
-    int is_encrypted;
-    char title[50];
-    char message[288];
-} Record;
 
 /*
 *Load Messages Function
