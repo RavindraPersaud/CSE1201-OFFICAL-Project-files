@@ -1,13 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../include/helper_functions.h"
 
-typedef struct {
-    int ID;
-    int is_encrypted;
-    char title[50];
-    char message[288];
-} Record;
 char* ask_decrypt();
 char* encrypt();
 void modify();
