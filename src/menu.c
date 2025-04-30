@@ -34,12 +34,13 @@ main_menu
 Display the main menu and prompt the user for their choice.
 */
 void main_menu() {
-    printf("0. Store a new note/message\n");
+    printf("What would you like to do?:\n");
+    printf("0. Store a new note/message.\n");
     printf("1. View all notes and messages.\n");
     printf("2. Search for note/message.\n");
-    printf("3. Modify a previously stored note\n");
-    printf("4. Delete a note/message\n");
-    printf("5. Exit program\n\n");
+    printf("3. Modify a previously stored note.\n");
+    printf("4. Delete a note/message.\n");
+    printf("5. Exit program.\n\n");
 }
 
 
@@ -139,6 +140,15 @@ Function that prints at the end of menus to indicate the previous menu has been 
 void end_of_menu(){
     printf("--------------------------------------------------------------------------------\n\n");
 }
+
+
+
+
+
+
+
+
+
 
 
 
