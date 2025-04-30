@@ -23,7 +23,6 @@ Steps:
 
 */
 int delete_rec_by_id(){
-    //var for id
     int id;
     scanf("%d", &id);
     //opens storage dat file
@@ -39,7 +38,7 @@ int delete_rec_by_id(){
     
     //record instance
     Record rec;
-   
+    
     //iterates through recs and checks for matchinf id
     while (fread(&rec, sizeof(Record), 1, fptr)){
         if (rec.ID != id) {
