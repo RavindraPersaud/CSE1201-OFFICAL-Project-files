@@ -34,6 +34,7 @@ void search_by_phrase() {
     int found = 0;
     char phrase[MAX_MESSAGE_SIZE];
     printf("Enter Phrase:");
+    getchar();
     scanf(" %[^\n]", phrase);
 
     FILE *fptr = fopen("../data/message_storage.dat", "rb");
@@ -78,7 +79,7 @@ void search_by_id() {
     int found = 0;
     printf("Enter Message ID:");
     scanf("%d", &id);
-
+    while (getchar() != '\n'); 
     FILE *fptr = fopen("../data/message_storage.dat", "rb");
 
     if (fptr == NULL) {
@@ -102,6 +103,7 @@ void search_by_id() {
     if (!found){
         printf("Message not Found\n");
     }
+    
 
     fclose(fptr);
 
@@ -158,6 +160,7 @@ char* ask_decrypt(Record rec) {
     char *decrypted;
 
     printf("Do you want to decrypt message?\n1.Yes\n2.No\nEnter Choice: ");
+    getchar();
     scanf("%d", &dec);
 
     if (dec == 1) {
@@ -173,5 +176,4 @@ char* ask_decrypt(Record rec) {
     }
     return decrypted;
 }
-
 
