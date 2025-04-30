@@ -7,10 +7,11 @@ Handles menu information and directs the user's actions to the requested functio
 
 #include <stdio.h>
 #include "../include/menu_functions.h"
+#include "../include/helper_functions.h"
 
 int delete_rec_by_id();
 void load_messages();
-
+int user_choice();
 
 /*
 user_choice
@@ -25,20 +26,7 @@ That chosen number is then returned, and the respective menu handles giving the 
 
 Clears the input buffer to discard any invalid input.
 */
-int user_choice(){ 
-    int choice;
-    printf("Enter your choice: ");
 
-    if (scanf("%d", &choice) != 1) {
-        choice = 7;
-        while (getchar() != '\n'); 
-    }
-    
-    else {
-        return choice;
-    }
-
-}
 
 
 /*
@@ -151,6 +139,10 @@ Function that prints at the end of menus to indicate the previous menu has been 
 void end_of_menu(){
     printf("--------------------------------------------------------------------------------\n\n");
 }
+
+
+
+
 
 
 
