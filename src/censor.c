@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-
+#include "../include/helper_functions.h"
 // Counts how many words are separated by commas
 int count(char *message) {
     int count = 1;  
@@ -59,7 +59,7 @@ void redact(char *message) {
     char **redacted = list_maker(input, &redacted_word_count);
     printf("Original: %s\n", message);
 
-    char redacted_message[288];
+    char redacted_message[MAX_MESSAGE_SIZE];
     int i = 0;
     int j = 0;
     //runs until it hits a EOL
