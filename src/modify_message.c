@@ -43,8 +43,8 @@ void modify(){
             fgets(rec.message, sizeof(rec.message), stdin);
             rec.message[strcspn(rec.message, "\n")] = 0; 
             //asks user if they would like to encrypt again
-            while(1){
-                char key[50];
+            while(rec.is_encrypted == 1){
+                char key[MAX_KEY_SIZE];
                 printf("Would you like to encrypt again?:\n1.Yes\n2.No\n");
                 int choice = user_choice();
                 if (choice == 1){
@@ -97,4 +97,3 @@ void modify(){
 
     
 }
-
