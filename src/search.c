@@ -12,23 +12,14 @@ Allows search by:
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-
-#include "../include/search_functions.h"
+#include "../include/helper_functions.h"
 
 
 // Struct representing a record
-typedef struct {
-    int ID;
-    int is_encrypted;
-    char title[50];
-    char message[288];
-} Record;
-
 
 char* decrypt(char message[], char key[]);
 
-void ask_decrypt(Record rec);
+char* ask_decrypt(Record rec);
 
 
 /*
@@ -41,7 +32,7 @@ Returns 0 on success, 1 on error.
 */
 void search_by_phrase() {
     int found = 0;
-    char phrase[288];
+    char phrase[MAX_MESSAGE_SIZE];
     printf("Enter Phrase:");
     scanf(" %[^\n]", phrase);
 
@@ -127,7 +118,7 @@ Returns 0 on success, 1 on error.
 */
 void search_by_title() {
     int found = 0;
-    char title[50];
+    char title[MAX_TITLE_SIZE];
     printf("Enter Message Title:");
     scanf(" %[^\n]", title);
 
@@ -161,9 +152,10 @@ void search_by_title() {
 
 
 //Asks user if they want to decrypt message then calls the decrypt function
-void ask_decrypt(Record rec) {
+char* ask_decrypt(Record rec) {
     int dec;
-    char key[50];
+    char key[MAX_KEY_SIZE];
+    char *decrypted;
 
     printf("Do you want to decrypt message?\n1.Yes\n2.No\nEnter Choice: ");
     scanf("%d", &dec);
@@ -179,5 +171,7 @@ void ask_decrypt(Record rec) {
             printf("This message is not encrypted.\n");
         }
     }
+    return decrypted;
 }
+
 
