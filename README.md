@@ -66,8 +66,8 @@ gcc src/*.c -o NotPad.exe
 
 ###  Storing a Message
 Prompts user to enter:
-- A title
-- Message 
+- A title[Character limit 50]
+- Message[Character limit 300] 
 - Whether or not to encrypt the message using a key
 
 Encrypted messages are protected and may only be accessed using the right key.
@@ -82,7 +82,7 @@ Displays all stored messages from records.dat:
 
 ###  Searching Messages
 Enables you to search by various method from the Search Menu:
-- 1. Title – Exact match (case-sensitive)
+- 1. Title – Exact match (case-sensitive)[Character limit 50]
 - 2. ID – Unique identifier
 - 3. Phrase – Substring within the message body
 
@@ -100,14 +100,14 @@ Results found are printed to the screen.
 ### Deleting Messages
 Users can delete messages by:
 - Message ID
-- Title
 
-Deletion involves copying all other records to a temp file, then replacing the original file.
 
 ---
 
 ### Redacting Words
 Replaces all instances of a particular word in a message with asterisks (e.g., stupid → ******).
+NotPad-- > Enter comma separated list of words you want to censor
+User: > test, list, showcase
 
 ---
 
