@@ -32,40 +32,46 @@ void store_message() {
         // Find the last ID
         fptr = fopen("../data/message_storage.dat", "rb");
         if (fptr != NULL) {
-            fseek(fptr, -(long)sizeof(Record), SEEK_END); //Goes to the last struct 
+            //Goes to the last struct
+            fseek(fptr, -(long)sizeof(Record), SEEK_END);  
             if (fread(&rec, sizeof(Record), 1, fptr) == 1) {
-                last_id = rec.ID;//gets the id of last struct
+                //gets the id of last struct
+                last_id = rec.ID;
             }
             fclose(fptr);
         }
         
-
+        //increments id by 1
         rec.ID = last_id + 1;
 
         printf("Enter Title: ");
         scanf(" %50[^\n]", rec.title);
-
+        //removes trailing spaces in title
         int len = strlen(rec.title);
         while (len > 0 && rec.title[len - 1] == ' ') {
             rec.title[--len] = '\0'; 
         }
 
-
+        //gets message
         printf("Enter Message: ");
         scanf(" %288[^\n]", message);
 
+        //asks users what they want to do with their message
         printf("\nDo you want to:\n1.Encrypt File\n2.Censor Message\n3.Store Normally\n");
         choice = user_choice();
         while(run1){
+            //prompts for key and encrypts
             if(choice == 1){
                 printf("Enter Key: ");
                 scanf("%s", key);
+                //clears buffer
                 while (getchar() != '\n'); 
-
+                //calls encrypt function
                 char *encrypted = encrypt(message, key);
                 strncpy(rec.message, encrypted, sizeof(rec.message));
                 rec.message[sizeof(rec.message) - 1] = '\0';
-                free(encrypted); // free memory allocated in encrypt
+                //free pointer
+                free(encrypted); 
                 rec.is_encrypted = 1;
                 break;
             }
@@ -110,5 +116,7 @@ void store_message() {
         while ((getchar()) != '\n'); // Clear input buffer
     }
 }
+
+
 
 
