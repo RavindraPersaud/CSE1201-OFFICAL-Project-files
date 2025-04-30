@@ -3,10 +3,9 @@
 #include <string.h>
 #include "../include/helper_functions.h"
 
-//Struct for each record
-
 /*
-*Load Messages Function
+Load Messages Function
+============================================
 iterates throughout the dat file and prints the data stored within the 
 structs.
 */
@@ -23,7 +22,7 @@ void load_messages(){
     while (fread(&rec, sizeof(Record), 1, fptr)){
         printf("ID: %d\n", rec.ID);
         printf("Title: %s\n", rec.title);
-        //clears slice string
+        //clears previous data from slice string
         memset(slice, 0, sizeof(slice));
         //copies up to the 21st index of rec.message into slice 
         strncpy(slice,rec.message,21);
