@@ -98,9 +98,7 @@ Results found are printed to the screen.
 ---
 
 ### Deleting Messages
-Users can delete messages by:
-- Message ID
-
+Users can delete messages by: - Message ID
 
 ---
 
