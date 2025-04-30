@@ -1,20 +1,15 @@
 #include <stdio.h>    
 #include <stdlib.h>   
 #include <string.h>   
-
+#include "../include/helper_functions.h"
 
 // Function prototypes
 int user_choice();
 char* encrypt(char *message, char *key);
 void store_message();
+void redact();
 
 // Struct for each record
-typedef struct {
-    int ID;
-    int is_encrypted;
-    char title[50];
-    char message[288];
-} Record;
 
 
 /*
@@ -31,8 +26,8 @@ void store_message() {
         Record rec;
         int run1 = 1;
         int last_id = 0; 
-        char message[288];
-        char key[50];
+        char message[MAX_MESSAGE_SIZE];
+        char key[MAX_KEY_SIZE];
 
         // Find the last ID
         fptr = fopen("../data/message_storage.dat", "rb");
