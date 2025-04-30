@@ -11,11 +11,10 @@ int user_choice();
 void modify(){
     int id;
     int found = 0;
-    //asks for a stores id
     printf("Enter Message ID:");
     scanf("%d", &id);
 
-    FILE *fptr = fopen("../data/message_storage.dat", "rb");
+    FILE *fptr = fopen("../data/message_storage.dat", "rb+");
 
     if (fptr == NULL) {
         printf("Error opening file.\n");
@@ -23,77 +22,58 @@ void modify(){
     }
 
     Record rec;
-    
+    //reads through all structs in dat file
     while (fread(&rec, sizeof(Record), 1, fptr)) {
-        //finds and print the struct with the matching id
+        //checls for given id
         if (rec.ID == id) {
             printf("ID: %d\n", rec.ID);
             printf("Title: %s\n", rec.title);
             printf("Message: %s\n", rec.message);
             printf("Encrypted: %d\n\n", rec.is_encrypted);
-            //if the message is encrypted it asks the user if they want to decrypt it
+            //if the message is encrypted then it asks the user to decrypt it
             if(rec.is_encrypted == 1){
                 printf("%s",ask_decrypt(rec));
             }
 
-            printf("Modify message, this message will overwrite the previous:\n");
-            //gets rid of left behind newlines
+            //Asks the user to modify the message
+            printf("\nModify message, this message will overwrite the previous:\n");
+            //clears input buffer
             getchar();  
-            //gets new message from user and stores it in rec.message
+            //gets user input
             fgets(rec.message, sizeof(rec.message), stdin);
-            rec.message[strcspn(rec.message, "\n")] = 0; 
-            //asks user if they would like to encrypt again
-            while(rec.is_encrypted == 1){
-                char key[MAX_KEY_SIZE];
-                printf("Would you like to encrypt again?:\n1.Yes\n2.No\n");
-                int choice = user_choice();
-                if (choice == 1){
-                    printf("Enter Key: ");
-                    scanf("%s", key);
-                    //calls encryption and copies it to rec.message
-                    char *encrypted = encrypt(rec.message, key);
-                    strncpy(rec.message, encrypted, sizeof(rec.message));
-                    rec.message[sizeof(rec.message) - 1] = '\0';
-                    // free memory allocated in encrypt
-                    free(encrypted); 
-                    rec.is_encrypted = 1;
-                    break;
-                }
-                else if(choice == 2){
-                    break;
-                }
-            }
+            //replace \n with end of line char
+            rec.message[strcspn(rec.message, "\n")] = '\0'; 
+            
+            //Key array
+            char key[MAX_KEY_SIZE];
 
-            // Now open the file to modify it
-            FILE *fptr = fopen("../data/message_storage.dat", "rb+"); 
-            if (fptr == NULL) {
-                printf("Error opening file for modification.\n");
-                return;
+            //Asks the user if the want to encrypt their message
+            printf("Would you like to encrypt?:\n1.Yes\n2.No\n");
+            int choice = user_choice();
+            if (choice == 1){
+                printf("Enter Key: ");
+                scanf("%s", key);
+                char *encrypted = encrypt(rec.message, key);
+                strncpy(rec.message, encrypted, sizeof(rec.message));
+                rec.message[sizeof(rec.message) - 1] = '\0';
+                free(encrypted); 
+                rec.is_encrypted = 1;
+            } else {
+                rec.is_encrypted = 0;
             }
-            //temp rect used to modify file
-            Record temp;
-            while (fread(&temp, sizeof(Record), 1, fptr)) {
-                if (temp.ID == rec.ID) {
-                    //This moves the file pointer back by one record so it will be at the start of the record that needs to overwrite.
-                    //This is beacuse the fread in line 80 moves the record forward by 1 so it will be 1 record pass the one we wnat to over write
-                    fseek(fptr, -(long int)sizeof(Record), SEEK_CUR);
-                    //overwriting what was in old rec
-                    fwrite(&rec, sizeof(Record), 1, fptr);
-
-                    printf("\nMessage updated successfully.\n");
-                    break;
-                }
-            }
-
-            fclose(fptr);
+            //move the file pointer back to the previous record
+            fseek(fptr, -(long int)sizeof(Record), SEEK_CUR);
+            //over writes old rec with new one
+            fwrite(&rec, sizeof(Record), 1, fptr);
+            printf("\nMessage updated successfully.\n");
+            //updates found to 1
             found = 1;
+            break;
         }
     }
     if (!found){
-        printf("Message not Found");
+        printf("Message not Found\n");
     }
 
     fclose(fptr);
-
-    
 }
