@@ -6,13 +6,10 @@ This module connects menu interactions with the backend file functions
 defined in storage.c.
 */
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "../include/helper_functions.h"
-
-
 
 /*
 delete_rec_by_id
@@ -26,36 +23,44 @@ Steps:
 
 */
 int delete_rec_by_id(){
-
+    //var for id
     int id;
     scanf("%d", &id);
-
+    //opens storage dat file
     FILE *fptr = fopen("../data/message_storage.dat", "rb");
-   
+    //open temperary file that will overwrite previous file
     FILE *temp = fopen("../data/temp.dat", "wb");
 
+    //checks if the file can be opended
     if (fptr == NULL || temp == NULL){
         printf("Error opening files.\n");
         return 1;
     }
     
+    //record instance
     Record rec;
    
+    //iterates through recs and checks for matchinf id
     while (fread(&rec, sizeof(Record), 1, fptr)){
         if (rec.ID != id) {
             fwrite(&rec, sizeof(Record), 1, temp);
         }
     }
 
+    //closes both files
     fclose(fptr);
     fclose(temp);
     
+    //removing file with unwanted message
     remove("../data/message_storage.dat");
-    
+    //renames edited file to old file
     rename("../data/temp.dat", "../data/message_storage.dat");
 
     return 0;
 }
+
+
+
 
 
 
