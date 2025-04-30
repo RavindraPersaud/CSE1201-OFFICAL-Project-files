@@ -95,11 +95,12 @@ void redact(char *message) {
     int j = 0;
 
     while (message[i]) {
+        //checks if message[i] is not a space
         if (isalpha(message[i]) || message[i] == '-' || message[i] == '\'') {
             // Extract a word
             char word[100];
             int w = 0;
-
+            //creates word
             while (isalnum(message[i]) || message[i] == '-' || message[i] == '\'') {
                 word[w++] = message[i++];
             }
@@ -131,7 +132,7 @@ void redact(char *message) {
     }
 
     redacted_message[j] = '\0';
-
+    //copies redacted message into message
     strcpy(message, redacted_message);
     printf("Redacted: %s\n", message);
 
