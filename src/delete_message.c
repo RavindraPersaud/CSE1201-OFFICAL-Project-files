@@ -54,7 +54,6 @@ int delete_rec_by_id(){
     
     rename("../data/temp.dat", "../data/message_storage.dat");
 
-    printf("Record with ID %d was removed.\n", id);
     return 0;
 }
 

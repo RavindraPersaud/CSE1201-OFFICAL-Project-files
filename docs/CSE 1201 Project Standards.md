@@ -189,6 +189,7 @@ int small_function() {
 |-- /src
 |   |-- main.c
 |   |-- source_files.c
+|   |-- NotPad--.exe
 |   |-- ...
 |
 |-- /include
@@ -203,17 +204,16 @@ int small_function() {
 |   |-- ...
 |
 |-- README.md
-|-- NotPad--.exe
 |-- ...
 
 
 ******
 ### /group-2-semester-project
-The root file taht contains the folders mentioned below, a user manual (README.md) and any random files/folders that 
+The root file contains the folders mentioned below, a user manual (README.md) and any random files/folders that 
 cannot be organised into the folders seen in the file structure.
 
 ### /src
-Contains **main.c** and primary source files.
+Contains the source files including **main.c** and the NotPad--.exe file.
 
 ### .c Files in /src
 The source files define functions which will be called in main.c or by other .c files.

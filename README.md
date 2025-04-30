@@ -37,7 +37,7 @@ Steps:
 1.Compile the program using GCC:
 
 ```bash
-gcc src/*.c -o NotPad.exe
+gcc src/*.c -o NotPad--.exe
 ```
 
 ### Execution  
@@ -68,7 +68,10 @@ gcc src/*.c -o NotPad.exe
 Prompts user to enter:
 - A title[Character limit 50]
 - Message[Character limit 300] 
-- Whether or not to encrypt the message using a key
+
+Then choose to encrypt, censor and store normally:
+1. Encrypt File
+    Enter key..
 
 Encrypted messages are protected and may only be accessed using the right key.
 
@@ -128,7 +131,7 @@ To prevent unauthorized access:
 | Issue                            | Solution                                           |
 |----------------------------------|----------------------------------------------------|
 | Program won't start              | Ensure all file are properly complied              |
-| Messages not saving              | Ensure records.dat is writable and exists        |
+| Messages not saving              | Ensure that NotPad--.exe in within /src            |
 | Wrong password error             | Check password for typos                           |
 | Search not returning results     | Ensure you entered correct phrase/title/ID         |
 
@@ -140,7 +143,7 @@ This project was developed by **Group 2** for **CSE1201 – Introduction to Prog
 
 ### Group Members
 
-| Full Name                | University Student ID (USI) |
+| Full Name               | University Student ID (USI) |
 |-------------------------|-----------------------------|
 | Gayendra Gavin Baijnath | 1052667                     |
 | Kiran Doobay            | 1053135                     |
@@ -150,5 +153,5 @@ This project was developed by **Group 2** for **CSE1201 – Introduction to Prog
 | Serina Rebecca Garrett  | 1037042                     |
 | Kyahri Whyte            | 1053151                     |
 
-
-We worked together to ensure each function of the message system—from storage to encryption—was implemented according to the CSE1201 project Specifications.
+We worked together to ensure each function of the message system—from storage to encryption—was implemented according 
+to the CSE1201 project Specifications.

@@ -54,6 +54,7 @@ void store_message() {
             if(choice == 1){
                 printf("Enter Key: ");
                 scanf("%s", key);
+                while (getchar() != '\n'); 
 
                 char *encrypted = encrypt(message, key);
                 strncpy(rec.message, encrypted, sizeof(rec.message));
