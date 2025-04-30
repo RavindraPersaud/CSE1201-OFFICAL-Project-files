@@ -10,15 +10,8 @@ defined in storage.c.
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../include/helper_functions.h"
 
-
-//Struct for each record
-typedef struct {
-    int ID;
-    int is_encrypted;
-    char title[50];
-    char message[288];
-} Record;
 
 
 /*
@@ -64,6 +57,8 @@ int delete_rec_by_id(){
     printf("Record with ID %d was removed.\n", id);
     return 0;
 }
+
+
 
 
 
