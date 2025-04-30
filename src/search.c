@@ -53,7 +53,10 @@ void search_by_phrase() {
             printf("Message: %s\n", rec.message);
             printf("Encrypted: %d\n\n", rec.is_encrypted);
 
-            ask_decrypt(rec);
+            if(rec.is_encrypted == 1){
+                ask_decrypt(rec);
+            }
+
             found = 1;
         }
     }
@@ -96,7 +99,10 @@ void search_by_id() {
             printf("Message: %s\n", rec.message);
             printf("Encrypted: %d\n\n", rec.is_encrypted);
 
-            ask_decrypt(rec);
+            if(rec.is_encrypted == 1){
+                ask_decrypt(rec);
+            }
+
             found = 1;
         }
     }
@@ -135,10 +141,13 @@ void search_by_title() {
     while (fread(&rec, sizeof(Record), 1, fptr)) {
         if (strcmp(rec.title, title) == 0) {
             printf("\nID: %d\n", rec.ID);
+            printf("Title: %s\n", rec.title);
             printf("Message: %s\n", rec.message);
             printf("Encrypted: %d\n\n", rec.is_encrypted);
-
-            ask_decrypt(rec);
+            if(rec.is_encrypted == 1){
+                ask_decrypt(rec);
+            }
+            
             found = 1;
         }
     }
@@ -176,4 +185,5 @@ char* ask_decrypt(Record rec) {
     }
     return decrypted;
 }
+
 
