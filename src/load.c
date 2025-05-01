@@ -1,3 +1,10 @@
+/*
+load_messages.c
+----------------------------
+Displays a list of messages stored in the .dat file, showing a preview
+of each message for user reference.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
