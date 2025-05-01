@@ -46,22 +46,24 @@ int main() {
                 // Show search menu and perform searches
                 int show_search_menu = 1;
                 int search_type;
-
+                //shows search menu
                 while (show_search_menu == 1) {
                     search_menu();
                     search_type = user_choice();
                     end_of_menu();
-
+                    //searching by title
                     if (search_type == 1) {
                         printf("Searching by Title.\n");
                         search_by_title();
                         end_of_menu();
                     } 
+                    //searching by id
                     else if (search_type == 2) {
                         printf("Searching by ID.\n");
                         search_by_id();
                         end_of_menu();
                     } 
+                    //searching by phrase
                     else if (search_type == 3) {
                         printf("Search by phrase\n");
                         search_by_phrase();
