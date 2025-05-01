@@ -25,21 +25,21 @@ Steps:
 int delete_rec_by_id(){
     int id;
     scanf("%d", &id);
-    //opens storage dat file
+    
     FILE *fptr = fopen("../data/message_storage.dat", "rb");
-    //open temperary file that will overwrite previous file
+    
     FILE *temp = fopen("../data/temp.dat", "wb");
 
-    //checks if the file can be opended
+
     if (fptr == NULL || temp == NULL){
         printf("Error opening files.\n");
         return 1;
     }
     
-    //record instance
+    
     Record rec;
     
-    //iterates through recs and checks for matchinf id
+    //iterates through recs and checks for matching id
     while (fread(&rec, sizeof(Record), 1, fptr)){
         if (rec.ID != id) {
             fwrite(&rec, sizeof(Record), 1, temp);
@@ -51,8 +51,8 @@ int delete_rec_by_id(){
     fclose(temp);
     
     //removing file with unwanted message
-    remove("../data/message_storage.dat");
     //renames edited file to old file
+    remove("../data/message_storage.dat");
     rename("../data/temp.dat", "../data/message_storage.dat");
 
     return 0;
