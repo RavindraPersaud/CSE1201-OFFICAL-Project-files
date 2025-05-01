@@ -19,7 +19,7 @@ Steps:
 1.Opens temporary file to store all records except the one with the given ID
 2.Writes all records except the on with the given ID to the temperary file
 3.Deletes old file containing the needed to be deleted record
-4.Renames temperary file to old file's name
+4.Renames temporary file to old file's name
 
 */
 int delete_rec_by_id(){
