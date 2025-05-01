@@ -3,11 +3,20 @@
 #include <string.h>
 #include "../include/helper_functions.h"
 
+//function prototypes
 char* ask_decrypt();
 char* encrypt();
 void modify();
 int user_choice();
-
+/*
+Modify Message function
+=========================
+This function prompts the user to enter the id of the message they want modify
+then prompts the user for the message they would like to modify it with and then
+the function overwrites the previous message with the newer one.
+It also prompts the user to decrypt the message if it was encrypted and also 
+asks the user if they woild like to encrypt it again after input.
+*/
 void modify(){
     int id;
     int found = 0;
@@ -71,6 +80,7 @@ void modify(){
             break;
         }
     }
+    //checks
     if (!found){
         printf("Message not Found\n");
     }
