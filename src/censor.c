@@ -1,3 +1,7 @@
+/*
+This file censors words in the users message using a comma separated
+list of words from the user
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
