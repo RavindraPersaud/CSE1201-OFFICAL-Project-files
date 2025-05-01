@@ -31,7 +31,7 @@ void store_message() {
         Record rec;
         int run1 = 1;
         int last_id = 0; 
-        //Stres message and key
+        //Stores message and key
         char message[MAX_MESSAGE_SIZE];
         char key[MAX_KEY_SIZE];
 
