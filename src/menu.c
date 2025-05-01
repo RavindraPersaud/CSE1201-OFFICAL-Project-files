@@ -1,13 +1,12 @@
 /*
 menu_functions.c
-
 Handles menu information and directs the user's actions to the requested functions across the program.
-
 */
 
 #include <stdio.h>
-#include "../include/menu_functions.h"
 #include "../include/helper_functions.h"
+#include "../include/menu_functions.h"
+
 
 int delete_rec_by_id();
 void load_messages();
