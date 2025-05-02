@@ -162,11 +162,10 @@ char* ask_decrypt(Record rec) {
 
             if (choice == 1 && rec.is_encrypted) {
                 printf("Enter Decryption Key: ");
+                scanf(" %[^\n]", key);
                 for (int i = 0; key[i] != '\0'; i++) {
                     key[i] = tolower(key[i]);
                 }
-                scanf(" %[^\n]", key);
-
                 decrypted = decrypt(rec.message, key);
                 printf("Decrypted Message:\n%s\n", decrypted);
                 free(decrypted);
