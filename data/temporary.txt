@@ -1,0 +1,9 @@
+temporary.txt
+
+We use github to share code. Github does not allow for the sharing of blank folders.
+This file is here to prevent folder that stores messages from being excluded in the Github code base.
+Not having message_storage.dat in here ensures that no one's messages are accidentally transferred
+when sharing/downloading the group-2-semester-project.zip file.
+
+Therefore, if you are reading this, the data folder is made and this file "temporary.txt" is safe to delete if you 
+wish.
