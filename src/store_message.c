@@ -69,6 +69,9 @@ void store_message() {
             if(choice == 1){
                 printf("Enter Key: ");
                 scanf("%s", key);
+                for (int i = 0; key[i] != '\0'; i++) {
+                    key[i] = tolower(key[i]);
+                }
                 //clears buffer
                 while (getchar() != '\n'); 
                 //calls encrypt function
