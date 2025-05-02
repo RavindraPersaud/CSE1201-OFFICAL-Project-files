@@ -1,6 +1,8 @@
 /*
 This file stores structs called records to a file.
 */
+
+#include <c_type.h>
 #include <stdio.h>    
 #include <stdlib.h>   
 #include <string.h>   
