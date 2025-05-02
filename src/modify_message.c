@@ -62,6 +62,9 @@ void modify(){
             if (choice == 1){
                 printf("Enter Key: ");
                 scanf("%s", key);
+                for (int i = 0; key[i] != '\0'; i++) {
+                    key[i] = tolower(key[i]);
+                }
                 char *encrypted = encrypt(rec.message, key);
                 strncpy(rec.message, encrypted, sizeof(rec.message));
                 rec.message[sizeof(rec.message) - 1] = '\0';
