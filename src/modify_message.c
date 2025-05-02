@@ -80,7 +80,7 @@ void modify(){
             break;
         }
     }
-    //checks
+    //checks if the record was found or not.
     if (!found){
         printf("Message not Found\n");
     }

@@ -155,18 +155,29 @@ char* ask_decrypt(Record rec) {
     char key[MAX_KEY_SIZE];
     char *decrypted = NULL;
 
-    printf("Do you want to decrypt message?\n1. Yes\n2. No\nEnter Choice: ");
-    scanf("%d", &choice);
-    while (getchar() != '\n');
+    while (1){
+        printf("Do you want to decrypt message?\n1. Yes\n2. No\nEnter Choice: ");
+        scanf("%d", &choice);
+        while (getchar() != '\n');
 
-    if (choice == 1 && rec.is_encrypted) {
-        printf("Enter Decryption Key: ");
-        scanf(" %[^\n]", key);
+            if (choice == 1 && rec.is_encrypted) {
+                printf("Enter Decryption Key: ");
+                scanf(" %[^\n]", key);
 
-        decrypted = decrypt(rec.message, key);
-        printf("Decrypted Message:\n%s\n", decrypted);
-        free(decrypted);
-    }
+                decrypted = decrypt(rec.message, key);
+                printf("Decrypted Message:\n%s\n", decrypted);
+                free(decrypted);
+                break;
+            }
 
-    return NULL;
+            else if (choice == 2) {
+                break;
+            }
+
+            else{
+                printf("Invalid Input.\n\n");
+                
+            }
+        } 
+    return NULL ;
 }

@@ -73,7 +73,7 @@ Choose Option 0 from the menu.
 Enter the Title (maximum 50 characters).
 Enter the Message Body (maximum 300 characters).
 Choose one of the following options:
-Encrypt the message (you will be prompted to enter a key).
+Encrypt the message (you will be prompted to enter a key this key.).
 Redact specific words (provide a comma-separated list).
 Store the message as-is (unencrypted and uncensored).
 The message will be saved to records.dat.
@@ -89,9 +89,9 @@ If a message is encrypted, only the ID and Title will be shown.
 ### Option 2 – Search for a Note/Message
 Choose Option 2 from the menu.
 Select a search method:
-1 – By Title (case-sensitive, exact match)
+1 – By Title (case-sensitive, exact match | my title ≠ My-Title)
 2 – By ID
-3 – By Phrase (search within the message body)
+3 – By Phrase (search within the message body, case-sensitve |message ≠ Message  )
 Enter the appropriate search term.
 Matching results will be displayed.
 

@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "optional_features.C": "c",
-        "menu_functions.h": "c"
+        "menu_functions.h": "c",
+        "helper_functions.h": "c"
     }
 }
