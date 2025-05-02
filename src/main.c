@@ -2,7 +2,11 @@
 main.c:
 Main entry point for the notes program.
 Displays the main menu and processes user input to store, view, search, modify, or delete messages.
+
+If you wish to run main.c, the entire src folder must be compiled.
+See README.md for compilation instructions
 */
+
 
 #include <stdio.h>
 #include "../include/helper_functions.h"

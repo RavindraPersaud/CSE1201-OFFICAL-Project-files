@@ -36,9 +36,12 @@ Enter the /src folder and double-click NotPad--
 
 ## Compiling NotPad-- Yourself
 **Note** These instructions are for compilation of the files using the compiler GCC and Window's Command Prompt
+- [Install GCC on Windows](https://www.youtube.com/watch?v=GxFiUEO_3zM)
+
 Steps:
 
 1. Open Command Prompt.
+
 2. Copy the path to *group-2-semester-project/src*
 
 3. Run the command below.
