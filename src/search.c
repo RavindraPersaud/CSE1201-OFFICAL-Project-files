@@ -8,7 +8,7 @@ Allows search by:
 - ID (exact match)
 */
 
-#inclue <c_type.h>
+#include <c_type.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
