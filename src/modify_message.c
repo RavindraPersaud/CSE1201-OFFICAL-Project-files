@@ -1,3 +1,5 @@
+//This file contains the function used to edit previous messages
+#include <c_type>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
