@@ -29,7 +29,11 @@ Program exits on option 5.
 
 */
 int main() {
-    printf("WELCOME TO OUR NOTES PROGRAM!\nSee README.md for help.\n\n");
+    //Show welcome message.
+    end_of_menu();
+    printf("Welcome to NotPad-- \n");
+    printf("See \"README.md- HELP\" for instructions.\n\n");
+    end_of_menu();
 
     int main_menu_choice;
 

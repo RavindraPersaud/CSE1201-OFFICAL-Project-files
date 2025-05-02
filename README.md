@@ -8,20 +8,18 @@
 ## Table of Contents
 ---
 - [Introduction](#introduction)  
-- [Tutorial](#tutorial)  
-  - [Compilation](#compilation)  
-  - [Execution](#execution)  
-- [Main Menu Options](#main-menu-options)  
-- [Storing a Message](#option-0--store-a-new-notemessage) 
-- [Viewing Messages](#option-1--view-all-notes-and-messages)  
-- [Searching Messages](#option-2--search-for-a-notemessage)  
-- [Modifying Messages](#option-3--modify-a-previously-stored-note)  
-- [Deleting Messages](#option-4--delete-a-notemessage)  
-- [Exiting the Program](#option-5--exit-the-program)  
+
+- [RUN NOTPAD--](#run-notpad--)
+
+- [Compiling NotPad-- Yourself](#compiling-notpad---yourself)
+
+- [HELP](#help)  
+
 - [Password Protection](#password-protection)  
+
 - [Troubleshooting](#troubleshooting)  
+
 - [Credits](#credits)  
-- [Group Members](#group-members)
 
 
 ---
@@ -31,27 +29,33 @@ This is a C application that allows users to manage notes or messages. It includ
 
 ---
 
-## Tutorial
+## RUN NOTPAD--
+Enter the /src folder and double-click NotPad--
+**WARNING** Do not remove NotPad-- from /src. The message storage will break.
 
-### Compilation 
+
+## Compiling NotPad-- Yourself
+**Note** These instructions are for compilation of the files using the compiler GCC and Window's Command Prompt
 Steps:
 
-1.Compile the program using GCC:
-Note: Please ensure you are in the group-2-semester-project/src directory before compiling.
+1. Open Command Prompt.
+2. Copy the path to *group-2-semester-project/src*
+
+3. Run the command below.
+Note: Please ensure you are in the **group-2-semester-project/src** directory before compiling otherwise there will be
+issues.
 ```bash
 gcc src/*.c -o NotPad--.exe
 ```
 
-### Execution  
-2.Run the program:
-
+4. Run the program from Command Prompt:
 ```bash
-./NotPad--
+NotPad--
 ```
 
 ---
 
-##  Main Menu Options
+##  HELP
 When you run the program, you will be presented with a numbered menu. Follow the steps below based on your desired action:
 
 
